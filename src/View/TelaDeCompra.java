@@ -30,6 +30,8 @@ public class TelaDeCompra extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextPane6 = new javax.swing.JTextPane();
@@ -42,9 +44,11 @@ public class TelaDeCompra extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         jTextPane10 = new javax.swing.JTextPane();
         btnFinalizar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        btnAdicionarProduto = new javax.swing.JMenu();
         btnCancelarProduto = new javax.swing.JMenu();
+        btnAdicionarProduto = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
         btnVoltar = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -53,7 +57,13 @@ public class TelaDeCompra extends javax.swing.JFrame {
 
         jMenuItem3.setText("jMenuItem3");
 
+        jMenuItem4.setText("jMenuItem4");
+
+        jMenuItem5.setText("jMenuItem5");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(23, 92, 183));
 
         jScrollPane6.setViewportView(jTextPane6);
 
@@ -107,13 +117,28 @@ public class TelaDeCompra extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnAdicionarProduto.setText("Adicionar Produto");
-        jMenuBar1.add(btnAdicionarProduto);
+        jButton1.setText("jButton1");
 
-        btnCancelarProduto.setText("Cancelar");
+        btnCancelarProduto.setText("Adicionar Produto");
         jMenuBar1.add(btnCancelarProduto);
 
+        btnAdicionarProduto.setText("Cancelar Produto");
+        jMenuBar1.add(btnAdicionarProduto);
+
+        jMenu1.setText("Manutenção de Produtos");
+        jMenuBar1.add(jMenu1);
+
         btnVoltar.setText("Voltar a Tela Inicial");
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseClicked(evt);
+            }
+        });
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(btnVoltar);
 
         setJMenuBar(jMenuBar1);
@@ -131,6 +156,17 @@ public class TelaDeCompra extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
+        TelaDeLogin telaLogin = new TelaDeLogin();
+        telaLogin.setVisible(true);
+        telaLogin.setResizable(false);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVoltarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -172,10 +208,14 @@ public class TelaDeCompra extends javax.swing.JFrame {
     private javax.swing.JMenu btnCancelarProduto;
     private javax.swing.JButton btnFinalizar;
     private javax.swing.JMenu btnVoltar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane6;
