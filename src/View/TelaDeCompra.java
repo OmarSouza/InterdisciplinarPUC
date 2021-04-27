@@ -16,6 +16,8 @@ public class TelaDeCompra extends javax.swing.JFrame {
      */
     public TelaDeCompra() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -62,6 +64,7 @@ public class TelaDeCompra extends javax.swing.JFrame {
         jMenuItem5.setText("jMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema PDV");
 
         jPanel1.setBackground(new java.awt.Color(23, 92, 183));
 
@@ -169,7 +172,6 @@ public class TelaDeCompra extends javax.swing.JFrame {
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         TelaDeLogin telaLogin = new TelaDeLogin();
         telaLogin.setVisible(true);
-        telaLogin.setResizable(false);
         this.setVisible(false);
     }//GEN-LAST:event_btnVoltarMouseClicked
 

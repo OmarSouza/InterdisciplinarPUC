@@ -6,6 +6,7 @@
 package View;
 
 import java.awt.Container;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +19,8 @@ public class TelaDeLogin extends javax.swing.JFrame {
      */
     public TelaDeLogin() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,7 +41,7 @@ public class TelaDeLogin extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnFinalizar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,6 +55,7 @@ public class TelaDeLogin extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
 
         jPanel2.setBackground(new java.awt.Color(23, 92, 183));
 
@@ -110,7 +114,12 @@ public class TelaDeLogin extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jButton3.setText("Fechar Programa");
+        btnFinalizar.setText("Fechar Programa");
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -123,7 +132,7 @@ public class TelaDeLogin extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(348, 348, 348))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(btnFinalizar)
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -132,7 +141,7 @@ public class TelaDeLogin extends javax.swing.JFrame {
                 .addGap(210, 210, 210)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btnFinalizar)
                 .addContainerGap())
         );
 
@@ -152,10 +161,17 @@ public class TelaDeLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         TelaDeCompra tela = new TelaDeCompra();
-        tela.setResizable(false);
         tela.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        int op = JOptionPane.showConfirmDialog(rootPane, "Deseja Finalizar o Programa", "Sair?", JOptionPane.YES_NO_OPTION);
+        
+        if (op == JOptionPane.YES_OPTION) {
+            dispose();
+        }
+    }//GEN-LAST:event_btnFinalizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,7 +211,7 @@ public class TelaDeLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEntrar;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnFinalizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
