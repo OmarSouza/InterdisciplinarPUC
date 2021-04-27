@@ -43,6 +43,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Manuten&#xe7;&#xe3;o de Produtos"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu1MouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="btnVoltar">
           <Properties>

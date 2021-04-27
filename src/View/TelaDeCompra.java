@@ -126,6 +126,11 @@ public class TelaDeCompra extends javax.swing.JFrame {
         jMenuBar1.add(btnAdicionarProduto);
 
         jMenu1.setText("Manutenção de Produtos");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         btnVoltar.setText("Voltar a Tela Inicial");
@@ -167,6 +172,13 @@ public class TelaDeCompra extends javax.swing.JFrame {
         telaLogin.setResizable(false);
         this.setVisible(false);
     }//GEN-LAST:event_btnVoltarMouseClicked
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        TelaDeManutenção telaManutencao = new TelaDeManutenção();
+        telaManutencao.setResizable(false);
+        telaManutencao.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
      * @param args the command line arguments
