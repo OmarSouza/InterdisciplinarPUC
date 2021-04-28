@@ -73,6 +73,11 @@ public class TelaDeLogin extends javax.swing.JFrame {
         });
 
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -169,9 +174,14 @@ public class TelaDeLogin extends javax.swing.JFrame {
         int op = JOptionPane.showConfirmDialog(rootPane, "Deseja Finalizar o Programa", "Sair?", JOptionPane.YES_NO_OPTION);
         
         if (op == JOptionPane.YES_OPTION) {
-            dispose();
+            System.exit(0);
         }
     }//GEN-LAST:event_btnFinalizarActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        TelaDeCadastroFuncionario telaCadastrar = new TelaDeCadastroFuncionario();
+        telaCadastrar.setVisible(true);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
