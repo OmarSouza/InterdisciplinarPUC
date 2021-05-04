@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package View.TelaProdutos;
+
+import View.TelaDeCompra;
+import View.TelaProdutos.TelaDeAlteração;
 
 /**
  *
@@ -36,10 +39,10 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        btnAlterarProduto = new javax.swing.JMenu();
         btnInserir = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        btnRemoverProduto = new javax.swing.JMenuItem();
         btnVoltar = new javax.swing.JMenu();
 
         jInternalFrame1.setVisible(true);
@@ -58,7 +61,7 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         jMenu2.setText("jMenu2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Manutenção de Produtos");
+        setTitle("Lista de Produtos");
 
         jPanel1.setBackground(new java.awt.Color(23, 92, 183));
 
@@ -203,7 +206,7 @@ public class TelaDeManutenção extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
-        jMenu1.setText("Opções");
+        btnAlterarProduto.setText("Opções");
 
         btnInserir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         btnInserir.setText("Inserir Produto");
@@ -212,7 +215,7 @@ public class TelaDeManutenção extends javax.swing.JFrame {
                 btnInserirActionPerformed(evt);
             }
         });
-        jMenu1.add(btnInserir);
+        btnAlterarProduto.add(btnInserir);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem2.setText("Alterar Produto");
@@ -221,18 +224,18 @@ public class TelaDeManutenção extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        btnAlterarProduto.add(jMenuItem2);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem3.setText("Remover Produto");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        btnRemoverProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        btnRemoverProduto.setText("Remover Produto");
+        btnRemoverProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                btnRemoverProdutoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        btnAlterarProduto.add(btnRemoverProduto);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(btnAlterarProduto);
 
         btnVoltar.setText("Voltar");
         btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -274,10 +277,10 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnVoltarMouseClicked
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void btnRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverProdutoActionPerformed
         TelaDeRemoção telaRemover = new TelaDeRemoção();
         telaRemover.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_btnRemoverProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,14 +318,14 @@ public class TelaDeManutenção extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu btnAlterarProduto;
     private javax.swing.JMenuItem btnInserir;
+    private javax.swing.JMenuItem btnRemoverProduto;
     private javax.swing.JMenu btnVoltar;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
