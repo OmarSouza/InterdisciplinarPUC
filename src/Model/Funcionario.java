@@ -5,18 +5,34 @@
  */
 package Model;
 
+import Persistencia.FuncionarioDAO;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author guuil
  */
+@Entity
+@Table(name = "cadastroFun")
 public class Funcionario extends Pessoa {
-    private int ID;
+    @Id
+    private Integer ID;
+    @Column
     private String dataNasc;
+    @Column
     private String cargo;
+    @Column
     private String email;
+    @Column
     private String endereco;
+    @Column
     private String telefone;
+    @Column
     private String login;
+    @Column
     private String senha;
 
     public Funcionario(int ID, String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf) {
@@ -99,8 +115,11 @@ public class Funcionario extends Pessoa {
         this.senha = senha;
     }
     
+    public int insert(){
+        return FuncionarioDAO.getInstance().insert(this);
+    }
     
-    
-    
-    
+    public int delete(){
+        return FuncionarioDAO.getInstance().delete(this);
+    }
 }
