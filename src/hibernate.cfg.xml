@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!-- was: <?xml version ="1.0" encoding ="UTF 8"?> -->
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/trabumberto2</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">admim1234</property>
+        
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <property name="show_sql">true</property>
+        
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        <mapping class="Model.Funcionario"/>
+        <mapping class="Model.Item"/>
+        <mapping class="Model.Produto"/>
+        <mapping class="Model.Venda"/>
+        
+    </session-factory>
+</hibernate-configuration>

@@ -6,19 +6,26 @@
 
 package View.LoginCadastro;
 
+import Controller.FuncionarioController;
+import Controller.TratamentoRetorno;
+import java.text.ParseException;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
  * @author omars
  */
 public class TelaDeCadastroFuncionario extends javax.swing.JFrame {
-
+    
+    private FuncionarioController funcController;
+    
     /** Creates new form TelaDeCadastroFuncionario */
     public TelaDeCadastroFuncionario() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        funcController = new FuncionarioController();
     }
 
     /** This method is called from within the constructor to
@@ -305,8 +312,13 @@ public class TelaDeCadastroFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCancelarActionPerformed
 
     private void txtCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadastrarActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Cadastrado Realizado Com Sucesso!");
-        this.dispose();
+        TratamentoRetorno tratamento = funcController.cadastrarFuncionario(txtDataNascimento.getText(), txtCargo.getText(), txtEmail.getText(), txtEndereço.getText(), txtTelefone.getText(), txtUser.getText(), txtPassword.getText(), txtName.getText(), txtCPF.getText());
+        
+        if (tratamento.isSucesso()) {
+            JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro: " + tratamento.getMensagem());
+        }
     }//GEN-LAST:event_txtCadastrarActionPerformed
 
     /**

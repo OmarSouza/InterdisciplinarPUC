@@ -5,23 +5,15 @@
  */
 package Model;
 
-<<<<<<< Updated upstream
-=======
 import Persistencia.FuncionarioDAO;
 
->>>>>>> Stashed changes
 /**
  *
  * @author guuil
  */
-<<<<<<< Updated upstream
-public class Funcionario extends Pessoa {
-    private int ID;
-=======
 
 public class Funcionario extends Pessoa {
     private Integer ID;
->>>>>>> Stashed changes
     private String dataNasc;
     private String cargo;
     private String email;
@@ -30,9 +22,8 @@ public class Funcionario extends Pessoa {
     private String login;
     private String senha;
 
-    public Funcionario(int ID, String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf) {
+    public Funcionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf) {
         super(nome, cpf);
-        this.ID = ID;
         this.dataNasc = dataNasc;
         this.cargo = cargo;
         this.email = email;
@@ -114,8 +105,19 @@ public class Funcionario extends Pessoa {
         this.senha = senha;
     }
     
+    public int insert(){
+        
+    }
     
+    public int delete(){
+        
+    }
     
+    public int update(){
+        
+    }
     
-    
+    public int findAll(){
+        
+    }
 }
