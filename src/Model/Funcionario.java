@@ -8,6 +8,8 @@ package Model;
 import Persistencia.FuncionarioDAO;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,6 +21,7 @@ import javax.persistence.Table;
 @Table(name = "cadastroFun")
 public class Funcionario extends Pessoa {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
     @Column
     private String dataNasc;
@@ -35,7 +38,7 @@ public class Funcionario extends Pessoa {
     @Column
     private String senha;
 
-    public Funcionario(int ID, String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf) {
+    public Funcionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf) {
         super(nome, cpf);
         this.ID = ID;
         this.dataNasc = dataNasc;
