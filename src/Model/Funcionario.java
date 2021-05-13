@@ -17,30 +17,19 @@ import javax.persistence.Table;
  *
  * @author guuil
  */
-@Entity
-@Table(name = "cadastroFun")
 public class Funcionario extends Pessoa {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Integer ID;
-    @Column
     private String dataNasc;
-    @Column
     private String cargo;
-    @Column
     private String email;
-    @Column
     private String endereco;
-    @Column
     private String telefone;
-    @Column
     private String login;
-    @Column
     private String senha;
 
     public Funcionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf) {
         super(nome, cpf);
-        this.ID = ID;
         this.dataNasc = dataNasc;
         this.cargo = cargo;
         this.email = email;
@@ -119,10 +108,18 @@ public class Funcionario extends Pessoa {
     }
     
     public int insert(){
-        return FuncionarioDAO.getInstance().insert(this);
+        
     }
     
     public int delete(){
-        return FuncionarioDAO.getInstance().delete(this);
+        
+    }
+    
+    public int update(){
+        
+    }
+    
+    public int findAll(){
+        
     }
 }
