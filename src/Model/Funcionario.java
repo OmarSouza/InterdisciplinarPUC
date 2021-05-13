@@ -5,8 +5,6 @@
  */
 package Model;
 
-import Persistencia.FuncionarioDAO;
-
 /**
  *
  * @author guuil
@@ -103,21 +101,5 @@ public class Funcionario extends Pessoa {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-    
-    public int insert(){
-        
-    }
-    
-    public int delete(){
-        
-    }
-    
-    public int update(){
-        
-    }
-    
-    public int findAll(){
-        
     }
 }

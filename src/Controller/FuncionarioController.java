@@ -103,12 +103,9 @@ public class FuncionarioController {
         }
         
         Funcionario funcionario = new Funcionario(dataNasc, cargo, email, endereco, telefone, login, senha, nome, cpf);
-        int resultado = funcionario.insert();
+
         
-        if(resultado <= 0){
-            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Cadastro Não Realizado. Tente Novamente");
-            return tratamento;
-        }
+        
         
         TratamentoRetorno tratamento = new TratamentoRetorno(true, "Cadastro Realizado com Sucesso.");
         return tratamento;
