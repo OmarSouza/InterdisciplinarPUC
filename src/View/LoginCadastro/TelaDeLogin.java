@@ -5,6 +5,7 @@
  */
 package View.LoginCadastro;
 
+import Controller.ControllerLogin;
 import View.TelaDeCompra;
 import java.awt.Container;
 import javax.swing.JOptionPane;
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author omars
  */
 public class TelaDeLogin extends javax.swing.JFrame {
+            ControllerLogin controllerLogin = new ControllerLogin();
 
     /**
      * Creates new form TelaDeLogin
@@ -180,6 +182,8 @@ public class TelaDeLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        controllerLogin.verificarLogin(txtUsuario.getText(), txtSenha.getText());
+                
         TelaDeCompra tela = new TelaDeCompra();
         tela.setVisible(true);
         this.setVisible(false);

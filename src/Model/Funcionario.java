@@ -5,12 +5,23 @@
  */
 package Model;
 
+<<<<<<< Updated upstream
+=======
+import Persistencia.FuncionarioDAO;
+
+>>>>>>> Stashed changes
 /**
  *
  * @author guuil
  */
+<<<<<<< Updated upstream
 public class Funcionario extends Pessoa {
     private int ID;
+=======
+
+public class Funcionario extends Pessoa {
+    private Integer ID;
+>>>>>>> Stashed changes
     private String dataNasc;
     private String cargo;
     private String email;
@@ -33,6 +44,10 @@ public class Funcionario extends Pessoa {
 
     public Funcionario(String nome, String cpf) {
         super(nome, cpf);
+    }
+    
+    public Funcionario(){
+        
     }
 
     public int getID() {
