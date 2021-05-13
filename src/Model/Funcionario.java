@@ -6,19 +6,13 @@
 package Model;
 
 import Persistencia.FuncionarioDAO;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
  * @author guuil
  */
-public class Funcionario extends Pessoa {
 
+public class Funcionario extends Pessoa {
     private Integer ID;
     private String dataNasc;
     private String cargo;
@@ -41,6 +35,10 @@ public class Funcionario extends Pessoa {
 
     public Funcionario(String nome, String cpf) {
         super(nome, cpf);
+    }
+    
+    public Funcionario(){
+        
     }
 
     public int getID() {
