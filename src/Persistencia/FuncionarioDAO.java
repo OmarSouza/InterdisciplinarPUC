@@ -2,15 +2,22 @@ package Persistencia;
 
 import Model.Funcionario;
 import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+
 
 
 public class FuncionarioDAO extends AbstractFuncionarioDAO{   
 
-    //Inicio Singleton
+    private SessionFactory factory;
+    
     private static FuncionarioDAO instance;
     
     private FuncionarioDAO(){
-
+        factory = new Configuration().configure().buildSessionFactory();
     }
 
     public static FuncionarioDAO getInstance(){
@@ -20,25 +27,63 @@ public class FuncionarioDAO extends AbstractFuncionarioDAO{
         
         return instance;
     }
+
     //Finalização Singleton
 
     @Override
     public int insert(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Session session = factory.openSession();
+            session.beginTransaction();
+            session.save(funcionario);
+            session.getTransaction().commit();
+            session.close();
+            return 1;
+        } 
+        catch (Exception e) {
+            return 0;
+        }
     }
 
     @Override
     public int update(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Session session = factory.openSession();
+            session.beginTransaction();
+            session.update(funcionario);
+            session.getTransaction().commit();
+            session.close();
+            return 1;
+        } 
+        catch (Exception e) {
+            return 0;
+        }
     }
 
     @Override
     public int delete(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Session session = factory.openSession();
+            session.beginTransaction();
+            session.delete(funcionario);
+            session.getTransaction().commit();
+            session.close();
+            return 1;
+        } 
+        catch (Exception e) {
+            return 0;
+        }
     }
 
     @Override
     public ArrayList<Funcionario> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Session session = factory.openSession();
+            List<Funcionario> funcionarioLista = session.createQuery("FROM " + Funcionario.class.getName()).list();
+            return new ArrayList<>(funcionarioLista);
+        } 
+        catch (Exception e) {
+            return null;
+        }
     }
 }

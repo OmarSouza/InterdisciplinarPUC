@@ -3,7 +3,7 @@ package Controller;
 import Model.Funcionario;
 
 public class FuncionarioController {
-    public TratamentoRetorno cadastrarFuncionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf){
+    public TratamentoRetorno cadastrarFuncionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf, int numero, String bairro){
         
         //Tratamento preenchimento campo Nome.
         if(nome == null || nome.isEmpty()){ 
@@ -101,9 +101,6 @@ public class FuncionarioController {
             TratamentoRetorno tratamento = new TratamentoRetorno(false, "Preencha o campo Endereco.");
             return tratamento;
         }
-        
-        Funcionario funcionario = new Funcionario(dataNasc, cargo, email, endereco, telefone, login, senha, nome, cpf);
-
         
         
         

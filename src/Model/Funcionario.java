@@ -5,6 +5,13 @@
  */
 package Model;
 
+
+import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 /**
  *
  * @author guuil
@@ -12,15 +19,26 @@ package Model;
 
 public class Funcionario extends Pessoa {
     private Integer ID;
+    @Column
     private String dataNasc;
+    @Column
     private String cargo;
+    @Column
     private String email;
+    @Column
     private String endereco;
+    @Column
     private String telefone;
+    @Column
     private String login;
+    @Column
     private String senha;
+    @Column
+    private Integer numero;
+    @Column
+    private String bairro;
 
-    public Funcionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf) {
+    public Funcionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf, Integer numero, String bairro) {
         super(nome, cpf);
         this.dataNasc = dataNasc;
         this.cargo = cargo;
@@ -29,6 +47,8 @@ public class Funcionario extends Pessoa {
         this.telefone = telefone;
         this.login = login;
         this.senha = senha;
+        this.numero = numero;
+        this.bairro = bairro;
     }
 
     public Funcionario(String nome, String cpf) {
@@ -101,5 +121,38 @@ public class Funcionario extends Pessoa {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+    
+    public int insert(){
+        return FuncionarioDAO.getInstance().insert(this);
+    }
+    
+    public int update(){
+        return FuncionarioDAO.getInstance().update(this);
+    }
+    
+    public int delete(){
+        return FuncionarioDAO.getInstance().delete(this);
+    }
+    
+    public static ArrayList<Funcionario> findAll(){
+        return FuncionarioDAO.getInstance().findAll();
     }
 }
