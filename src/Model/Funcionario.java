@@ -5,35 +5,19 @@
  */
 package Model;
 
-import Persistencia.FuncionarioDAO;
-<<<<<<< Updated upstream
-=======
+
 import java.util.ArrayList;
->>>>>>> Stashed changes
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-<<<<<<< Updated upstream
-import javax.persistence.Table;
-=======
->>>>>>> Stashed changes
-
 /**
  *
  * @author guuil
  */
-<<<<<<< Updated upstream
-public class Funcionario extends Pessoa {
 
-=======
-@Entity
 public class Funcionario extends Pessoa {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
->>>>>>> Stashed changes
     private Integer ID;
     @Column
     private String dataNasc;
@@ -69,6 +53,10 @@ public class Funcionario extends Pessoa {
 
     public Funcionario(String nome, String cpf) {
         super(nome, cpf);
+    }
+    
+    public Funcionario(){
+        
     }
 
     public int getID() {
@@ -134,23 +122,7 @@ public class Funcionario extends Pessoa {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-<<<<<<< Updated upstream
-    
-    public int insert(){
-        
-    }
-    
-    public int delete(){
-        
-    }
-    
-    public int update(){
-        
-    }
-    
-    public int findAll(){
-        
-=======
+
 
     public Integer getNumero() {
         return numero;
@@ -182,6 +154,5 @@ public class Funcionario extends Pessoa {
     
     public static ArrayList<Funcionario> findAll(){
         return FuncionarioDAO.getInstance().findAll();
->>>>>>> Stashed changes
     }
 }
