@@ -3,7 +3,7 @@ package Controller;
 import Model.Funcionario;
 
 public class FuncionarioController {
-    public TratamentoRetorno cadastrarFuncionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf){
+    public TratamentoRetorno cadastrarFuncionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf, int numero, String bairro){
         
         //Tratamento preenchimento campo Nome.
         if(nome == null || nome.isEmpty()){ 
@@ -102,8 +102,14 @@ public class FuncionarioController {
             return tratamento;
         }
         
+<<<<<<< Updated upstream
         Funcionario funcionario = new Funcionario(dataNasc, cargo, email, endereco, telefone, login, senha, nome, cpf);
         int resultado = funcionario.insert();
+=======
+        Funcionario funcionario = new Funcionario(dataNasc, cargo, email, endereco, telefone, login, senha, nome, cpf, numero, bairro);
+
+        
+>>>>>>> Stashed changes
         
         if(resultado <= 0){
             TratamentoRetorno tratamento = new TratamentoRetorno(false, "Cadastro Não Realizado. Tente Novamente");
