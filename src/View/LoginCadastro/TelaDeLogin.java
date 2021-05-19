@@ -5,9 +5,14 @@
  */
 package View.LoginCadastro;
 
-import Controller.ControllerLogin;
+import Controller.LoginController;
+import Model.QRCodeReader;
 import View.TelaDeCompra;
+import com.google.zxing.WriterException;
 import java.awt.Container;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +20,9 @@ import javax.swing.JOptionPane;
  * @author omars
  */
 public class TelaDeLogin extends javax.swing.JFrame {
-            ControllerLogin controllerLogin = new ControllerLogin();
+    
+            LoginController controllerLogin = new LoginController();
+            QRCodeReader qrcode = new QRCodeReader();
 
     /**
      * Creates new form TelaDeLogin
@@ -182,6 +189,10 @@ public class TelaDeLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+                
+                // Teste QRCode
+                qrcode.ReadQRCode();
+                
         controllerLogin.verificarLogin(txtUsuario.getText(), txtSenha.getText());
                 
         TelaDeCompra tela = new TelaDeCompra();

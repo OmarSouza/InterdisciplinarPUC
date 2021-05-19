@@ -11,7 +11,7 @@ import Model.Funcionario;
  *
  * @author guuil
  */
-public class ControllerLogin {
+public class LoginController {
     
     public void verificarLogin(String login, String senha){
         System.out.println(login + " " + senha);
