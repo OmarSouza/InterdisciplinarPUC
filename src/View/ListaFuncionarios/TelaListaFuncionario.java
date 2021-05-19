@@ -5,7 +5,12 @@
  */
 package View.ListaFuncionarios;
 
+import Controller.FuncionarioController;
+import Controller.TratamentoRetorno;
 import View.TelaDeCompra;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,13 +18,22 @@ import View.TelaDeCompra;
  */
 public class TelaListaFuncionario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaListaFuncionario
-     */
+    private FuncionarioController funcController;
+    
     public TelaListaFuncionario() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        funcController = new FuncionarioController();
+        preencherTabela();
+    }
+    
+    public void preencherTabela(){
+        funcController.preencherTabela((DefaultTableModel) tabelaFuncionario.getModel());
+    }
+    
+    public JTable getTabela(){
+        return tabelaFuncionario;
     }
 
     /**
@@ -36,7 +50,7 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaFuncionario = new javax.swing.JTable();
         jMenuBar2 = new javax.swing.JMenuBar();
         btnOpções = new javax.swing.JMenu();
         btnAlterarFuncionario = new javax.swing.JMenuItem();
@@ -53,7 +67,7 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(23, 92, 183));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null},
@@ -107,7 +121,7 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Usuario", "Senha", "CPF", "Nome", "Cargo", "Data de Nascimento", "Endereço", "Numero Endereço", "Bairro", "Telefone", "Email"
+                "ID", "Usuario", "CPF", "Nome", "Cargo", "Data de Nascimento", "Endereço", "Numero Endereço", "Bairro", "Telefone", "Email"
             }
         ) {
             Class[] types = new Class [] {
@@ -125,7 +139,7 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaFuncionario);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,7 +147,7 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 932, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1030, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -196,8 +210,28 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
     private void btnRemoverFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverFuncionarioActionPerformed
-        TelaRemoverFuncionario telaRemover = new TelaRemoverFuncionario();
-        telaRemover.setVisible(true);
+        int column = 0;
+        int row = tabelaFuncionario.getSelectedRow();
+        
+        if(row < 0){
+            JOptionPane.showMessageDialog(null, "Cadastro não selecionado.");
+            return;
+        }
+        
+        String value = tabelaFuncionario.getModel().getValueAt(row, column).toString();
+        
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Deseja Remover o Cadastro?");
+        if(dialogResult == JOptionPane.YES_OPTION){
+            TratamentoRetorno tratamento = funcController.deletarCadastro(value);
+        
+            if(tratamento.isSucesso()){
+                JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+                preencherTabela();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+            }
+        }
     }//GEN-LAST:event_btnRemoverFuncionarioActionPerformed
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
@@ -252,6 +286,6 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaFuncionario;
     // End of variables declaration//GEN-END:variables
 }

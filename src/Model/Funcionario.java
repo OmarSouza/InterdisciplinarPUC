@@ -9,13 +9,24 @@ package Model;
 import Persistencia.FuncionarioDAO;
 import java.util.ArrayList;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 /**
  *
  * @author guuil
  */
-
-public class Funcionario extends Pessoa {
+@Entity
+public class Funcionario {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
+    @Column
+    private String nome;
+    @Column
+    private String CPF;
     @Column
     private String dataNasc;
     @Column
@@ -36,7 +47,8 @@ public class Funcionario extends Pessoa {
     private String bairro;
 
     public Funcionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf, Integer numero, String bairro) {
-        super(nome, cpf);
+        this.nome = nome;
+        this.CPF = cpf;
         this.dataNasc = dataNasc;
         this.cargo = cargo;
         this.email = email;
@@ -49,7 +61,8 @@ public class Funcionario extends Pessoa {
     }
 
     public Funcionario(String nome, String cpf) {
-        super(nome, cpf);
+        this.nome = nome;
+        this.CPF = cpf;
     }
     
     public Funcionario(){
@@ -135,6 +148,22 @@ public class Funcionario extends Pessoa {
 
     public void setBairro(String bairro) {
         this.bairro = bairro;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
     }
     
     public int insert(){
