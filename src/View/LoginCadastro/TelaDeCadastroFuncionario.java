@@ -48,7 +48,6 @@ public class TelaDeCadastroFuncionario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
@@ -72,6 +71,7 @@ public class TelaDeCadastroFuncionario extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         BoxSelectionAdmin = new javax.swing.JComboBox<>();
+        txtPassword = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Usuario");
@@ -312,12 +312,14 @@ public class TelaDeCadastroFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCancelarActionPerformed
 
     private void txtCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadastrarActionPerformed
-        TratamentoRetorno tratamento = funcController.cadastrarFuncionario(txtDataNascimento.getText(), txtCargo.getText(), txtEmail.getText(), txtEndereço.getText(), txtTelefone.getText(), txtUser.getText(), txtPassword.getText(), txtName.getText(), txtCPF.getText());
+        TratamentoRetorno tratamento = funcController.cadastrarFuncionario(txtDataNascimento.getText(), txtCargo.getText(), txtEmail.getText(), txtEndereço.getText(), txtTelefone.getText(), txtUser.getText(), txtPassword.getText(), txtName.getText(), txtCPF.getText(), txtNumeroCasa.getText(), txtBairro.getText());
         
-        if (tratamento.isSucesso()) {
+        if(tratamento.isSucesso()){
             JOptionPane.showMessageDialog(null, tratamento.getMensagem());
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro: " + tratamento.getMensagem());
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, tratamento.getMensagem());
         }
     }//GEN-LAST:event_txtCadastrarActionPerformed
 
@@ -389,7 +391,7 @@ public class TelaDeCadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField txtEndereço;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNumeroCasa;
-    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JFormattedTextField txtTelefone;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables

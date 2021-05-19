@@ -9,10 +9,8 @@ package Model;
  *
  * @author guuil
  */
-public class Cliente extends Pessoa {
+public class Cliente{
 
-    public Cliente(String nome, String cpf) {
-        super(nome, cpf);
-    }
+    
     
 }
