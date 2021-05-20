@@ -41,6 +41,7 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         btnAlterarProduto = new javax.swing.JMenu();
         btnInserir = new javax.swing.JMenuItem();
+        btnCodBarras = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         btnRemoverProduto = new javax.swing.JMenuItem();
         btnVoltar = new javax.swing.JMenu();
@@ -217,6 +218,15 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         });
         btnAlterarProduto.add(btnInserir);
 
+        btnCodBarras.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        btnCodBarras.setText("Criar Cód. de Barras Produto");
+        btnCodBarras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCodBarrasActionPerformed(evt);
+            }
+        });
+        btnAlterarProduto.add(btnCodBarras);
+
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Alterar Produto");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -282,6 +292,10 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         telaRemover.setVisible(true);
     }//GEN-LAST:event_btnRemoverProdutoActionPerformed
 
+    private void btnCodBarrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCodBarrasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCodBarrasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -319,6 +333,7 @@ public class TelaDeManutenção extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu btnAlterarProduto;
+    private javax.swing.JMenuItem btnCodBarras;
     private javax.swing.JMenuItem btnInserir;
     private javax.swing.JMenuItem btnRemoverProduto;
     private javax.swing.JMenu btnVoltar;
