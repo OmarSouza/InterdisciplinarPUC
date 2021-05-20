@@ -60,9 +60,9 @@ public class Funcionario {
         this.bairro = bairro;
     }
 
-    public Funcionario(String nome, String cpf) {
-        this.nome = nome;
-        this.CPF = cpf;
+    public Funcionario(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
     }
     
     public Funcionario(){
@@ -180,5 +180,9 @@ public class Funcionario {
     
     public static ArrayList<Funcionario> findAll(){
         return FuncionarioDAO.getInstance().findAll();
+    }
+    
+    public Funcionario verificaLogin(){
+        return FuncionarioDAO.getInstance().verificaLogin(login, senha);
     }
 }
