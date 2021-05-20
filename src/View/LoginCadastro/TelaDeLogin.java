@@ -5,9 +5,10 @@
  */
 package View.LoginCadastro;
 
-
 import Controller.ControllerLoginFuncionario;
 import Controller.TratamentoRetorno;
+import Controller.LoginController;
+import Controller.QRCodeReaderController;
 import View.TelaDeCompra;
 import com.google.zxing.WriterException;
 import java.awt.Container;
@@ -203,10 +204,6 @@ public class TelaDeLogin extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, tratamento.getMensagem());
         }
-
-                
-                // Teste QRCode
-                qrcode.ReadQRCode();
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package Controller;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -13,13 +13,14 @@ import com.google.zxing.common.BitMatrix;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+
 /**
  *
  * @author guuil
  */
 
 // Teste com a Livraria QRCode
-public class QRCodeGenerator {
+public class QRCodeGeneratorController {
     
     public void generateQRCode() throws WriterException, IOException{
     String data = "www.google.com";
