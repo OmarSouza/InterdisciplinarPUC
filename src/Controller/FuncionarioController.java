@@ -43,9 +43,8 @@ public class FuncionarioController {
             return tratamento;
         }
         
-        //Tratamento preenchimento do campo Senha.
         if(senha == null || senha.isEmpty()){
-            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Preencha o campo senha.");
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Preencha o campo Senha.");
             return tratamento;
         }
         

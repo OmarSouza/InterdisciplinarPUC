@@ -3,9 +3,14 @@ package Persistencia;
 import Model.Funcionario;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.TypedQuery;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
 
 
@@ -15,6 +20,7 @@ public class FuncionarioDAO extends AbstractFuncionarioDAO{
     private SessionFactory factory;
     
     private static FuncionarioDAO instance;
+    private Object manager;
     
     private FuncionarioDAO(){
         factory = new Configuration().configure().buildSessionFactory();
@@ -86,4 +92,21 @@ public class FuncionarioDAO extends AbstractFuncionarioDAO{
             return null;
         }
     }
+    
+    public Funcionario verificaLogin(String login, String senha){
+        System.out.println("login travou");
+        try {
+            Session session = factory.openSession();
+            session.getTransaction();
+            Query query = session.createQuery("SELECT func FROM Funcionario func where func.login =:login AND func.senha =: senha");
+            query.setParameter("login", login);
+            query.setParameter("senha", senha);
+            return (Funcionario)query.uniqueResult();
+        } 
+        catch (Exception e) {
+            return null;
+        }
+        
+    }       
+           
 }

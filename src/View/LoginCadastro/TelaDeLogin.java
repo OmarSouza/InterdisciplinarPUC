@@ -5,8 +5,9 @@
  */
 package View.LoginCadastro;
 
-import Controller.LoginController;
-import Model.QRCodeReader;
+
+import Controller.ControllerLoginFuncionario;
+import Controller.TratamentoRetorno;
 import View.TelaDeCompra;
 import com.google.zxing.WriterException;
 import java.awt.Container;
@@ -20,9 +21,10 @@ import javax.swing.JOptionPane;
  * @author omars
  */
 public class TelaDeLogin extends javax.swing.JFrame {
-    
-            LoginController controllerLogin = new LoginController();
-            QRCodeReader qrcode = new QRCodeReader();
+
+    ControllerLoginFuncionario controllerLogin;
+    QRCodeReader qrcode = new QRCodeReader();
+
 
     /**
      * Creates new form TelaDeLogin
@@ -31,6 +33,7 @@ public class TelaDeLogin extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        controllerLogin = new ControllerLoginFuncionario();
     }
 
     /**
@@ -189,15 +192,21 @@ public class TelaDeLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        String txtSenha = new String(this.txtSenha.getPassword());
+        TratamentoRetorno tratamento = controllerLogin.verificarLogin(txtUsuario.getText(), txtSenha);
+        
+        if(tratamento.isSucesso()){
+            TelaDeCompra telaCompra = new TelaDeCompra();
+            telaCompra.setVisible(true);
+            this.setVisible(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+        }
+
                 
                 // Teste QRCode
                 qrcode.ReadQRCode();
-                
-        controllerLogin.verificarLogin(txtUsuario.getText(), txtSenha.getText());
-                
-        TelaDeCompra tela = new TelaDeCompra();
-        tela.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
