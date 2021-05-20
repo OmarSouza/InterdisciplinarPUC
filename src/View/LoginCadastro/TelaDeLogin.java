@@ -6,14 +6,7 @@
 package View.LoginCadastro;
 
 
-import Controller.ControllerLoginFuncionario;
-import Controller.TratamentoRetorno;
 import View.TelaDeCompra;
-import com.google.zxing.WriterException;
-import java.awt.Container;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,10 +15,6 @@ import javax.swing.JOptionPane;
  */
 public class TelaDeLogin extends javax.swing.JFrame {
 
-    ControllerLoginFuncionario controllerLogin;
-    QRCodeReader qrcode = new QRCodeReader();
-
-
     /**
      * Creates new form TelaDeLogin
      */
@@ -33,7 +22,6 @@ public class TelaDeLogin extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        controllerLogin = new ControllerLoginFuncionario();
     }
 
     /**
@@ -192,21 +180,9 @@ public class TelaDeLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        String txtSenha = new String(this.txtSenha.getPassword());
-        TratamentoRetorno tratamento = controllerLogin.verificarLogin(txtUsuario.getText(), txtSenha);
-        
-        if(tratamento.isSucesso()){
             TelaDeCompra telaCompra = new TelaDeCompra();
             telaCompra.setVisible(true);
             this.setVisible(false);
-        }
-        else{
-            JOptionPane.showMessageDialog(null, tratamento.getMensagem());
-        }
-
-                
-                // Teste QRCode
-                qrcode.ReadQRCode();
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
