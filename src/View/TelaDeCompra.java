@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.QRCodeReaderController;
 import View.LoginCadastro.TelaDeLogin;
 import View.TelaProdutos.TelaDeManutenção;
 import View.ListaFuncionarios.TelaListaFuncionario;
@@ -23,6 +24,8 @@ import javax.swing.JOptionPane;
  * @author omars
  */
 public class TelaDeCompra extends javax.swing.JFrame {
+    
+    QRCodeReaderController qrCode = new QRCodeReaderController();
 
     /**
      * Creates new form TelaDeCompra
@@ -281,16 +284,17 @@ public class TelaDeCompra extends javax.swing.JFrame {
     private void btnAdicionarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdicionarProdutoMouseClicked
         int returnVal = FileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-        File file = FileChooser.getSelectedFile();
-        try {
-          // What to do with the file, e.g. display it in a TextArea
-          textCodigoDeBarras.read( new FileReader( file.getAbsolutePath() ), null );
-        } catch (IOException ex) {
-          System.out.println("problem accessing file"+file.getAbsolutePath());
+            File file = FileChooser.getSelectedFile();
+            try {
+                // Teste QRCode
+                String fileSelected = qrCode.readQRCode(file.getPath());
+                textCodigoDeBarras.setText(fileSelected);
+            } catch (Exception e) {
+                System.out.println("problem accessing file " + file.getAbsolutePath());
+            }
+        } else {    
+            System.out.println("File access cancelled by user.");
         }
-    } else {
-        System.out.println("File access cancelled by user.");
-    }
     }//GEN-LAST:event_btnAdicionarProdutoMouseClicked
 
     private void btnCancelarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarProdutoMouseClicked
