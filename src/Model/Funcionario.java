@@ -167,22 +167,18 @@ public class Funcionario {
     }
     
     public int insert(){
-        return FuncionarioDAO.getInstance().insert(this);
+        return FuncionarioDAO.getInstance().addFuncionario(this);
     }
     
     public int update(){
-        return FuncionarioDAO.getInstance().update(this);
+        return FuncionarioDAO.getInstance().atualizarCadastro(this);
     }
     
     public int delete(){
-        return FuncionarioDAO.getInstance().delete(this);
+        return FuncionarioDAO.getInstance().removerFuncionario(this);
     }
     
     public static ArrayList<Funcionario> findAll(){
         return FuncionarioDAO.getInstance().findAll();
-    }
-    
-    public Funcionario verificaLogin(){
-        return FuncionarioDAO.getInstance().verificaLogin(login, senha);
     }
 }
