@@ -7,7 +7,11 @@ package View.LoginCadastro;
 
 
 
+import Controller.FuncionarioController;
+import Controller.TratamentoRetorno;
 import View.TelaDeCompra;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,10 +23,13 @@ public class TelaDeLogin extends javax.swing.JFrame {
     /**
      * Creates new form TelaDeLogin
      */
+    private FuncionarioController controller;
+    
     public TelaDeLogin() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        controller = new FuncionarioController();
     }
 
     /**
@@ -181,9 +188,21 @@ public class TelaDeLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-            TelaDeCompra telaCompra = new TelaDeCompra();
-            telaCompra.setVisible(true);
-            this.setVisible(false);
+        String senha = new String(txtSenha.getPassword());
+        
+        try {
+            TratamentoRetorno tratamento = controller.verificarLogin(txtUsuario.getText(), senha);
+            
+            if(tratamento.isSucesso()){
+                JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaDeLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
