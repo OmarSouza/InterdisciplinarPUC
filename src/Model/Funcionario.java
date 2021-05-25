@@ -181,4 +181,8 @@ public class Funcionario {
     public static ArrayList<Funcionario> findAll(){
         return FuncionarioDAO.getInstance().findAll();
     }
+    
+    public boolean validarLogin() throws Exception{
+        return FuncionarioDAO.getInstance().validarUsuario(this);
+    }
 }

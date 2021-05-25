@@ -145,10 +145,16 @@ public class FuncionarioController {
         return tratamento;
     }
     
-    public void retornarCadastro(String id){
+    public TratamentoRetorno verificarLogin(String login, String senha) throws Exception{
         Funcionario func = new Funcionario();
-        func.setID(Integer.parseInt(id));
+        boolean resultado = func.validarLogin();
         
-        //Continuar o Metodo de Busca
+        if(resultado == false){
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Login incorreto.");
+            return tratamento;
+        }
+        
+        TratamentoRetorno tratamento = new TratamentoRetorno(true, "Logado com sucesso.");
+        return tratamento;
     }
 }
