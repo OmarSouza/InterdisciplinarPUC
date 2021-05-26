@@ -100,7 +100,8 @@ public class FuncionarioDAO extends AbstractFuncionarioDAO{
             
             return false;
         } catch (Exception ex) {
-            throw new Exception("Erro ao verificar o usúario");
+            ex.printStackTrace();
+            return false;
         }
     }
 }
