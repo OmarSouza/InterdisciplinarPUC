@@ -5,14 +5,8 @@
  */
 package View.LoginCadastro;
 
-import Controller.LoginController;
-import Controller.QRCodeReaderController;
+
 import View.TelaDeCompra;
-import com.google.zxing.WriterException;
-import java.awt.Container;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
