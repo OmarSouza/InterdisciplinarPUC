@@ -1,9 +1,10 @@
 package Controller;
 
 import Model.Funcionario;
+import javax.swing.table.DefaultTableModel;
 
 public class FuncionarioController {
-    public TratamentoRetorno cadastrarFuncionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf){
+    public TratamentoRetorno cadastrarFuncionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf, String numero, String bairro){
         
         //Tratamento preenchimento campo Nome.
         if(nome == null || nome.isEmpty()){ 
@@ -42,9 +43,8 @@ public class FuncionarioController {
             return tratamento;
         }
         
-        //Tratamento preenchimento do campo Senha.
         if(senha == null || senha.isEmpty()){
-            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Preencha o campo senha.");
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Preencha o campo Senha.");
             return tratamento;
         }
         
@@ -102,15 +102,59 @@ public class FuncionarioController {
             return tratamento;
         }
         
-        Funcionario funcionario = new Funcionario(dataNasc, cargo, email, endereco, telefone, login, senha, nome, cpf);
-        int resultado = funcionario.insert();
+        int numeroInt;
+        
+        try {
+            numeroInt = Integer.parseInt(numero);
+        } catch (Exception e) {
+            return new TratamentoRetorno(false, "Campo quantidade não preencido com valor numerico");
+        }
+        
+        Funcionario func = new Funcionario(dataNasc, cargo, email, endereco, telefone, login, senha, nome, cpf, numeroInt, bairro);
+        int resultado = func.insert();
         
         if(resultado <= 0){
-            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Cadastro Não Realizado. Tente Novamente");
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Cadastro Não Realizado!");
             return tratamento;
         }
         
         TratamentoRetorno tratamento = new TratamentoRetorno(true, "Cadastro Realizado com Sucesso.");
+        return tratamento;
+    }
+    
+    public void preencherTabela(DefaultTableModel modelo){        
+        modelo.setNumRows(0);
+        
+        for(Funcionario func : Funcionario.findAll()){
+            modelo.addRow(new Object[]{func.getID(), func.getLogin(), func.getCPF(), func.getNome(), func.getCargo(), func.getDataNasc(), func.getEndereco(), func.getNumero(), func.getBairro(), func.getTelefone(), func.getEmail()});
+        }
+    }
+    
+    public TratamentoRetorno deletarCadastro(String id){
+        Funcionario func = new Funcionario();
+        func.setID(Integer.parseInt(id));
+        
+        int resultado = func.delete();
+        
+        if(resultado < 0){
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Não foi possivel deletar cadastro.");
+            return tratamento;
+        }
+        
+        TratamentoRetorno tratamento = new TratamentoRetorno(true, "Deletado com Sucesso");
+        return tratamento;
+    }
+    
+    public TratamentoRetorno verificarLogin(String login, String senha) throws Exception{
+        Funcionario func = new Funcionario();
+        boolean resultado = func.validarLogin();
+        
+        if(resultado == false){
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Login incorreto.");
+            return tratamento;
+        }
+        
+        TratamentoRetorno tratamento = new TratamentoRetorno(true, "Logado com sucesso.");
         return tratamento;
     }
 }

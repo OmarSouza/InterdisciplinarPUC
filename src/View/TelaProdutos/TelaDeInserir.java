@@ -5,6 +5,8 @@
  */
 package View.TelaProdutos;
 
+import Controller.ProdutoController;
+import Controller.TratamentoRetorno;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,13 +15,13 @@ import javax.swing.JOptionPane;
  */
 public class TelaDeInserir extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaDeInserir
-     */
+    ProdutoController controllerProduto;
+    
     public TelaDeInserir() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        controllerProduto = new ProdutoController();
     }
 
     /**
@@ -36,7 +38,7 @@ public class TelaDeInserir extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnAdicionar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
+        txtCodBarras = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtMarca = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -44,7 +46,7 @@ public class TelaDeInserir extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtValor1 = new javax.swing.JFormattedTextField();
+        txtValor = new javax.swing.JFormattedTextField();
         txtEstoque = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
 
@@ -65,14 +67,20 @@ public class TelaDeInserir extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("ID");
 
-        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCodBarras.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtIdKeyTyped(evt);
+                txtCodBarrasKeyTyped(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Marca");
+
+        txtMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMarcaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Descrição");
@@ -91,10 +99,10 @@ public class TelaDeInserir extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Adicionar Produto");
 
-        txtValor1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        txtValor1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtValor1KeyTyped(evt);
+                txtValorKeyTyped(evt);
             }
         });
 
@@ -134,8 +142,8 @@ public class TelaDeInserir extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtDescrição, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtValor1))))
+                                    .addComponent(txtCodBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtValor))))
                         .addGap(433, 433, 433))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -152,7 +160,7 @@ public class TelaDeInserir extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodBarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -164,7 +172,7 @@ public class TelaDeInserir extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtValor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,15 +223,22 @@ public class TelaDeInserir extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Produto Adicionado com Sucesso");
+        TratamentoRetorno tratamento = controllerProduto.verificarProduto(txtCodBarras.getText(), txtDescrição.getText(), txtMarca.getText(), txtValor.getText(), txtEstoque.getText());
+        
+        if(tratamento.isSucesso()){
+            JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+        }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void txtValor1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValor1KeyTyped
+    private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
         String caracteres="0987654321,.";// lista de caracters que devem ser aceitos
         if(!caracteres.contains(evt.getKeyChar()+"")){
             evt.consume();//aciona esse propriedade para eliminar a ação do evento
         }
-    }//GEN-LAST:event_txtValor1KeyTyped
+    }//GEN-LAST:event_txtValorKeyTyped
 
     private void txtEstoqueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstoqueKeyTyped
         String caracteres="0987654321";// lista de caracters que devem ser aceitos
@@ -232,12 +247,16 @@ public class TelaDeInserir extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtEstoqueKeyTyped
 
-    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+    private void txtCodBarrasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodBarrasKeyTyped
         String caracteres="0987654321";// lista de caracters que devem ser aceitos
         if(!caracteres.contains(evt.getKeyChar()+"")){
             evt.consume();//aciona esse propriedade para eliminar a ação do evento
         }
-    }//GEN-LAST:event_txtIdKeyTyped
+    }//GEN-LAST:event_txtCodBarrasKeyTyped
+
+    private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMarcaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,10 +305,10 @@ public class TelaDeInserir extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField txtCodBarras;
     private javax.swing.JTextField txtDescrição;
     private javax.swing.JTextField txtEstoque;
-    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtMarca;
-    private javax.swing.JFormattedTextField txtValor1;
+    private javax.swing.JFormattedTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

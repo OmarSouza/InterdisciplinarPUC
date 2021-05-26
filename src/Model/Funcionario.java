@@ -5,25 +5,50 @@
  */
 package Model;
 
-import Persistencia.FuncionarioDAO;
 
+import Persistencia.FuncionarioDAO;
+import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 /**
  *
  * @author guuil
  */
-
-public class Funcionario extends Pessoa {
+@Entity
+public class Funcionario {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
+    @Column
+    private String nome;
+    @Column
+    private String CPF;
+    @Column
     private String dataNasc;
+    @Column
     private String cargo;
+    @Column
     private String email;
+    @Column
     private String endereco;
+    @Column
     private String telefone;
+    @Column
     private String login;
+    @Column
     private String senha;
+    @Column
+    private Integer numero;
+    @Column
+    private String bairro;
 
-    public Funcionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf) {
-        super(nome, cpf);
+    public Funcionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf, Integer numero, String bairro) {
+        this.nome = nome;
+        this.CPF = cpf;
         this.dataNasc = dataNasc;
         this.cargo = cargo;
         this.email = email;
@@ -31,10 +56,13 @@ public class Funcionario extends Pessoa {
         this.telefone = telefone;
         this.login = login;
         this.senha = senha;
+        this.numero = numero;
+        this.bairro = bairro;
     }
 
-    public Funcionario(String nome, String cpf) {
-        super(nome, cpf);
+    public Funcionario(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
     }
     
     public Funcionario(){
@@ -104,20 +132,57 @@ public class Funcionario extends Pessoa {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    public int insert(){
-        
+
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
     }
     
-    public int delete(){
-        
+    public int insert(){
+        return FuncionarioDAO.getInstance().addFuncionario(this);
     }
     
     public int update(){
-        
+        return FuncionarioDAO.getInstance().atualizarCadastro(this);
     }
     
-    public int findAll(){
-        
+    public int delete(){
+        return FuncionarioDAO.getInstance().removerFuncionario(this);
+    }
+    
+    public static ArrayList<Funcionario> findAll(){
+        return FuncionarioDAO.getInstance().findAll();
+    }
+    
+    public boolean validarLogin() throws Exception{
+        return FuncionarioDAO.getInstance().validarUsuario(this);
     }
 }

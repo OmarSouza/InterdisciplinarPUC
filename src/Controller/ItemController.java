@@ -5,16 +5,10 @@
  */
 package Controller;
 
-import Model.Funcionario;
-
 /**
  *
- * @author guuil
+ * @author omars
  */
-public class LoginController {
-    
-    public void verificarLogin(String login, String senha){
-        System.out.println(login + " " + senha);
-    }
+public class ItemController {
     
 }

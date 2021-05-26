@@ -1,41 +1,41 @@
 package Persistencia;
 
 import Model.Funcionario;
+import Model.Produto;
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-
-
-
-public class FuncionarioDAO extends AbstractFuncionarioDAO{   
-
+public class ProdutoDAO extends AbstractProdutoDAO {
+    
+    //Inicio Singleton e Conexão com Banco
     private SessionFactory factory;
     
-    private static FuncionarioDAO instance;    
-    private FuncionarioDAO(){
+    private static ProdutoDAO instance;
+    
+    private ProdutoDAO(){
         factory = new Configuration().configure().buildSessionFactory();
     }
-
-    public static FuncionarioDAO getInstance(){
+    
+    public static ProdutoDAO getInstance(){
         if(instance == null){
-            instance = new FuncionarioDAO();
+            instance = new ProdutoDAO();
         }
         
         return instance;
     }
-
-    //Finalização Singleton
+    
+    //Finalização.
 
     @Override
-    public int addFuncionario(Funcionario funcionario) {
+    //Metodo de inserir produtos na tabela produto
+    public int cadastrarProdutos(Produto produto) {
         try {
             Session session = factory.openSession();
             session.beginTransaction();
-            session.save(funcionario);
+            session.save(produto);
             session.getTransaction().commit();
             session.close();
             return 1;
@@ -46,11 +46,12 @@ public class FuncionarioDAO extends AbstractFuncionarioDAO{
     }
 
     @Override
-    public int atualizarCadastro(Funcionario funcionario) {
+    //Metodo de update da tabela produto.
+    public int update(Produto produto) {
         try {
             Session session = factory.openSession();
             session.beginTransaction();
-            session.update(funcionario);
+            session.update(produto);
             session.getTransaction().commit();
             session.close();
             return 1;
@@ -61,11 +62,12 @@ public class FuncionarioDAO extends AbstractFuncionarioDAO{
     }
 
     @Override
-    public int removerFuncionario(Funcionario funcionario) {
+    //Metodo de deletar da tabela produto.
+    public int delete(Produto produto) {
         try {
             Session session = factory.openSession();
             session.beginTransaction();
-            session.delete(funcionario);
+            session.delete(produto);
             session.getTransaction().commit();
             session.close();
             return 1;
@@ -76,31 +78,17 @@ public class FuncionarioDAO extends AbstractFuncionarioDAO{
     }
 
     @Override
-    public ArrayList<Funcionario> findAll() {
+    //Metodo de implementação de um ArrayList findAll.
+    public ArrayList<Produto> findAll() {
         try {
             Session session = factory.openSession();
-            List<Funcionario> funcionarioLista = session.createQuery("FROM " + Funcionario.class.getName()).list();
-            return new ArrayList<>(funcionarioLista);
+            List<Produto> produtoLista = session.createQuery("FROM " + Produto.class.getName()).list();
+            return new ArrayList<>(produtoLista);
         } 
         catch (Exception e) {
             return null;
         }
     }
     
-    public boolean validarUsuario(Funcionario funcionario) throws Exception {
-        try {
-            
-            List<Funcionario> funcionarioLista = findAll();
-            for(Funcionario func : funcionarioLista){
-                if(func.getLogin().equals(funcionario.getLogin()) && func.getSenha().equals(funcionario.getSenha())){
-                    System.out.println(funcionario.getLogin() + "" + funcionario.getSenha());
-                    return true;
-                }
-            }
-            
-            return false;
-        } catch (Exception ex) {
-            throw new Exception("Erro ao verificar o usúario");
-        }
-    }
+    
 }

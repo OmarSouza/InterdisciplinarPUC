@@ -5,15 +5,30 @@
  */
 package Model;
 
+import Persistencia.ProdutoDAO;
+import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author guuil
  */
+@Entity
 public class Produto {
-    private String nomeProduto;
-    private String marca;
-    private int estoque;
+    
+    @Id
     private long codBarras;
+    @Column
+    private String nomeProduto;
+    @Column
+    private String marca;
+    @Column
+    private int estoque;
+    @Column
     private double preço;
 
     public Produto(String nomeProduto, String marca, int estoque, long codBarras, double preço) {
@@ -22,6 +37,10 @@ public class Produto {
         this.estoque = estoque;
         this.codBarras = codBarras;
         this.preço = preço;
+    }
+
+    public Produto() {
+        
     }
 
     public String getNomeProduto() {
@@ -64,7 +83,19 @@ public class Produto {
         this.preço = preço;
     }
     
-    public void cadastrarProduto(){
-        //banco de dados
+    public int insert(){
+        return ProdutoDAO.getInstance().cadastrarProdutos(this);
+    }
+    
+    public int update(){
+        return ProdutoDAO.getInstance().update(this);
+    }
+    
+    public int delete(){
+        return ProdutoDAO.getInstance().delete(this);
+    }
+    
+    public static ArrayList<Produto> findAll(){
+        return ProdutoDAO.getInstance().findAll();
     }
 }
