@@ -195,7 +195,9 @@ public class TelaDeLogin extends javax.swing.JFrame {
             
             if(tratamento.isSucesso()){
                 JOptionPane.showMessageDialog(null, tratamento.getMensagem());
-                
+                TelaDeCompra telaCompra = new TelaDeCompra();
+                telaCompra.setVisible(true);
+                this.setVisible(false);
             }
             else{
                 JOptionPane.showMessageDialog(null, tratamento.getMensagem());
