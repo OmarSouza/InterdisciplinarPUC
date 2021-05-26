@@ -35,11 +35,6 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
     public JTable getTabela(){
         return tabelaFuncionario;
     }
-    
-    public void enviarDados(){
-        TelaAlterarFuncionario telaAlterar = new TelaAlterarFuncionario();
-        telaAlterar.get
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -210,27 +205,7 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncionarioActionPerformed
-        int column = 0;
-        int row = tabelaFuncionario.getSelectedRow();
         
-        if(row < 0){
-            JOptionPane.showMessageDialog(null, "Cadastro não selecionado.");
-            return;
-        }
-        
-        String value = tabelaFuncionario.getModel().getValueAt(row, column).toString();
-        
-        if(dialogResult == JOptionPane.YES_OPTION){
-            TratamentoRetorno tratamento = funcController.deletarCadastro(value);
-        
-            if(tratamento.isSucesso()){
-                JOptionPane.showMessageDialog(null, tratamento.getMensagem());
-                preencherTabela();
-            }
-            else{
-                JOptionPane.showMessageDialog(null, tratamento.getMensagem());
-            }
-        }
     }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
     private void btnRemoverFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverFuncionarioActionPerformed
