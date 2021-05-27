@@ -6,18 +6,17 @@
 package View;
 
 import Controller.QRCodeReaderController;
+import Controller.ListaCompras;
+import Controller.ProdutoController;
+import Controller.TratamentoRetorno;
 import View.LoginCadastro.TelaDeLogin;
 import View.TelaProdutos.TelaDeManutenção;
 import View.ListaFuncionarios.TelaListaFuncionario;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static java.lang.Long.parseLong;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -26,6 +25,8 @@ import javax.swing.JOptionPane;
 public class TelaDeCompra extends javax.swing.JFrame {
     
     QRCodeReaderController qrCode = new QRCodeReaderController();
+    ListaCompras listaComp = new ListaCompras();
+    private ProdutoController prodController;
 
     /**
      * Creates new form TelaDeCompra
@@ -34,6 +35,7 @@ public class TelaDeCompra extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        prodController = new ProdutoController();
     }
 
     /**
@@ -156,7 +158,7 @@ public class TelaDeCompra extends javax.swing.JFrame {
                 java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -193,8 +195,10 @@ public class TelaDeCompra extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(459, 459, 459)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -207,6 +211,7 @@ public class TelaDeCompra extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 30, Short.MAX_VALUE)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,10 +224,10 @@ public class TelaDeCompra extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -321,12 +326,22 @@ public class TelaDeCompra extends javax.swing.JFrame {
                 // Teste QRCode
                 String fileSelected = qrCode.readQRCode(file.getPath());
                 textCodigoDeBarras.setText(fileSelected);
+                long fileSelectedLong = Long.parseLong(fileSelected);
+                
+                TratamentoRetorno retorno = prodController.verificarCodBarras(fileSelectedLong);
+                if (retorno.isSucesso()){
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, retorno.getMensagem());
+                }
             } catch (Exception e) {
                 System.out.println("Problema ao acessar o arquivo: " + file.getAbsolutePath());
             }
         } else {    
             System.out.println("Arquivo cancelado pelo usuário.");
         }
+        
+        
     }//GEN-LAST:event_btnAdicionarProdutoMouseClicked
 
     private void btnCancelarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarProdutoMouseClicked

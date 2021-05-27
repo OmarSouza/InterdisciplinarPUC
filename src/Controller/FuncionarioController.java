@@ -146,7 +146,7 @@ public class FuncionarioController {
     }
     
     public TratamentoRetorno verificarLogin(String login, String senha) throws Exception{
-        Funcionario func = new Funcionario();
+        Funcionario func = new Funcionario(login, senha);
         boolean resultado = func.validarLogin();
         
         if(resultado == false){

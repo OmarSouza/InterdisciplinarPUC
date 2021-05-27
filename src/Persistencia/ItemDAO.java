@@ -2,6 +2,7 @@ package Persistencia;
 
 import Model.Item;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemDAO extends AbstractItemDAO {
 
@@ -41,4 +42,22 @@ public class ItemDAO extends AbstractItemDAO {
 	public ArrayList<Item> findAll(){
 		
 	}
+        
+            public boolean validarUsuario(Funcionario funcionario) throws Exception {
+        try {
+            
+            List<Funcionario> funcionarioLista = findAll();
+            for(Funcionario func : funcionarioLista){
+                if(func.getLogin().equals(funcionario.getLogin()) && func.getSenha().equals(funcionario.getSenha())){
+                    System.out.println(funcionario.getLogin() + "" + funcionario.getSenha());
+                    return true;
+                }
+            }
+            
+            return false;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }
