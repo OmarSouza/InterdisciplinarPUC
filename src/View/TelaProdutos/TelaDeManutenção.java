@@ -27,14 +27,14 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         controllerProduto = new ProdutoController();
-        preencherTabela();
+        preencherTabelas();
     }
 
-    public void preencherTabela(){
+    public void preencherTabelas(){
         controllerProduto.preencherTabelas((DefaultTableModel) tabelaProduto.getModel());
     }
     
-    public JTable getTabela(){
+    public JTable getTabelas(){
         return tabelaProduto;
     }
     @SuppressWarnings("unchecked")
@@ -50,8 +50,10 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         btnAlterarProduto = new javax.swing.JMenu();
         btnInserir = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        btnCodBarras = new javax.swing.JMenuItem();
+        btnAlterar = new javax.swing.JMenuItem();
         btnRemoverProduto = new javax.swing.JMenuItem();
+        btnAtualizar = new javax.swing.JMenu();
         btnVoltar = new javax.swing.JMenu();
 
         jInternalFrame1.setVisible(true);
@@ -226,14 +228,23 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         });
         btnAlterarProduto.add(btnInserir);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem2.setText("Alterar Produto");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        btnCodBarras.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        btnCodBarras.setText("Criar Cód. de Barras Produto");
+        btnCodBarras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                btnCodBarrasActionPerformed(evt);
             }
         });
-        btnAlterarProduto.add(jMenuItem2);
+        btnAlterarProduto.add(btnCodBarras);
+
+        btnAlterar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        btnAlterar.setText("Alterar Produto");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+        btnAlterarProduto.add(btnAlterar);
 
         btnRemoverProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         btnRemoverProduto.setText("Remover Produto");
@@ -245,6 +256,14 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         btnAlterarProduto.add(btnRemoverProduto);
 
         jMenuBar1.add(btnAlterarProduto);
+
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAtualizarMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(btnAtualizar);
 
         btnVoltar.setText("Voltar");
         btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -275,10 +294,10 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         telaInserir.setVisible(true);
     }//GEN-LAST:event_btnInserirActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         TelaDeAlteração telaAlterar = new TelaDeAlteração();
         telaAlterar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         TelaDeCompra telaCompra = new TelaDeCompra();
@@ -303,13 +322,16 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         
             if(tratamento.isSucesso()){
                 JOptionPane.showMessageDialog(null, tratamento.getMensagem());
-                preencherTabela();
             }
             else{
                 JOptionPane.showMessageDialog(null, tratamento.getMensagem());
             }
         }
     }//GEN-LAST:event_btnRemoverProdutoActionPerformed
+
+    private void btnAtualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtualizarMouseClicked
+        preencherTabelas();
+    }//GEN-LAST:event_btnAtualizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -347,14 +369,16 @@ public class TelaDeManutenção extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnAlterar;
     private javax.swing.JMenu btnAlterarProduto;
+    private javax.swing.JMenu btnAtualizar;
+    private javax.swing.JMenuItem btnCodBarras;
     private javax.swing.JMenuItem btnInserir;
     private javax.swing.JMenuItem btnRemoverProduto;
     private javax.swing.JMenu btnVoltar;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;

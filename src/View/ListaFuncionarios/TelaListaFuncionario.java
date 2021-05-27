@@ -205,8 +205,7 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncionarioActionPerformed
-        TelaAlterarFuncionario telaAlterar = new TelaAlterarFuncionario();
-        telaAlterar.setVisible(true);
+        
     }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
     private void btnRemoverFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverFuncionarioActionPerformed
