@@ -12,6 +12,7 @@ import Controller.TratamentoRetorno;
 import View.LoginCadastro.TelaDeLogin;
 import View.TelaProdutos.TelaDeManutenção;
 import View.ListaFuncionarios.TelaListaFuncionario;
+import java.awt.SplashScreen;
 import java.io.File;
 import static java.lang.Long.parseLong;
 import javax.swing.JFileChooser;
@@ -349,7 +350,18 @@ public class TelaDeCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarProdutoMouseClicked
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Redirecionando para Pagamento...");
+        String[] options = {"Dinheiro", "Cartão", "Cancelar"};
+        
+        int x = JOptionPane.showOptionDialog(null, "Selecione o método de pagamento: ",
+                "Pagamento",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        
+        if(x == 0){
+            JOptionPane.showMessageDialog(null, "Dinheiro");
+        }
+        else if(x == 1){
+            JOptionPane.showMessageDialog(null, "Cartão");
+        }
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     /**
