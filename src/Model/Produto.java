@@ -29,7 +29,7 @@ public class Produto {
     @Column
     private int estoque;
     @Column
-    private Double preco;
+    private double preco;
 
     public Produto() {
         
@@ -85,8 +85,8 @@ public class Produto {
         return preco;
     }
 
-    public void setPreco(double preço) {
-        this.preco = preço;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
     
     public int insert(){
@@ -105,7 +105,7 @@ public class Produto {
         return ProdutoDAO.getInstance().findAll();
     }
     
-        public boolean validarProduto() throws Exception{
+        public Produto validarProduto() throws Exception{
         return ProdutoDAO.getInstance().procurarProduto(this);
     }
 }

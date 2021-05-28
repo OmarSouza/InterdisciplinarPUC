@@ -6,15 +6,12 @@
 package View;
 
 import Controller.QRCodeReaderController;
-import Controller.ListaCompras;
 import Controller.ProdutoController;
 import Controller.TratamentoRetorno;
 import View.LoginCadastro.TelaDeLogin;
 import View.TelaProdutos.TelaDeManutenção;
 import View.ListaFuncionarios.TelaListaFuncionario;
-import java.awt.SplashScreen;
 import java.io.File;
-import static java.lang.Long.parseLong;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +24,6 @@ import javax.swing.table.DefaultTableModel;
 public class TelaDeCompra extends javax.swing.JFrame {
     
     QRCodeReaderController qrCode = new QRCodeReaderController();
-    ListaCompras listaComp = new ListaCompras();
     private ProdutoController prodController;
 
     /**
@@ -38,6 +34,7 @@ public class TelaDeCompra extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         prodController = new ProdutoController();
+
     }
 
     /**
@@ -141,26 +138,17 @@ public class TelaDeCompra extends javax.swing.JFrame {
 
         tabelaCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Cód. QRCode", "Marca", "Nome", "Valor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -171,7 +159,6 @@ public class TelaDeCompra extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaCompra.setRowHeight(70);
         jScrollPane1.setViewportView(tabelaCompra);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -328,13 +315,17 @@ public class TelaDeCompra extends javax.swing.JFrame {
                 long fileSelectedLong = Long.parseLong(fileSelected);
                 
                 TratamentoRetorno retorno = prodController.verificarCodBarras(fileSelectedLong,(DefaultTableModel) tabelaCompra.getModel());
-                if (retorno.isSucesso()){
-                    
-                } else {
-                    JOptionPane.showMessageDialog(null, retorno.getMensagem());
-                }
+                
+
+                prodController.setPrecoTotal(prodController.getProdutoAdd().getPreco() + prodController.getPrecoTotal());
+                String preencherCampos = Double.toString(prodController.getProdutoAdd().getPreco());
+                txtPrecoProduto.setText(preencherCampos);
+                preencherCampos = prodController.getProdutoAdd().getMarca() + " " + prodController.getProdutoAdd().getNomeProduto();
+                txtDescricaoProduto.setText(preencherCampos);
+                txtPrecoTotal.setText(Double.toString(prodController.getPrecoTotal()));
+                
             } catch (Exception e) {
-                System.out.println("Problema ao acessar o arquivo: " + file.getAbsolutePath());
+                e.printStackTrace();
             }
         } else {    
             System.out.println("Arquivo cancelado pelo usuário.");

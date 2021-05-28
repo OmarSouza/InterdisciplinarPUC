@@ -90,18 +90,22 @@ public class ProdutoDAO extends AbstractProdutoDAO {
         }
     }
     
-        public boolean procurarProduto(Produto produto) throws Exception {
+        public Produto procurarProduto(Produto produto) throws Exception {
         try {
             
             List<Produto> produtoLista = findAll();
             for(Produto prod : produtoLista){
                 if(produto.getCodBarras() == prod.getCodBarras()){    
-                    return true;
+                    produto.setMarca(prod.getMarca());
+                    produto.setNomeProduto(prod.getNomeProduto());
+                    produto.setPreco(prod.getPreco());
+                    
+                    return produto;
                 }
             }
-            return false;
+            return null;
         } catch (Exception ex) {
-            throw new Exception("Erro ao verificar o usúario");
+            throw new Exception("Erro ao verificar o produto");
         }
     }
         
