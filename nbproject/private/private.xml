@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/guuil/OneDrive/Documentos/GitHub/InterdisciplinarPUC/src/View/TelaDeCompra.java</file>
-            <file>file:/C:/Users/guuil/OneDrive/Documentos/GitHub/InterdisciplinarPUC/src/Model/Funcionario.java</file>
-            <file>file:/C:/Users/guuil/OneDrive/Documentos/GitHub/InterdisciplinarPUC/src/Persistencia/VendaDAO.java</file>
-            <file>file:/C:/Users/guuil/OneDrive/Documentos/GitHub/InterdisciplinarPUC/src/Persistencia/FuncionarioDAO.java</file>
-            <file>file:/C:/Users/guuil/OneDrive/Documentos/GitHub/InterdisciplinarPUC/src/Controller/ListaCompras.java</file>
-            <file>file:/C:/Users/guuil/OneDrive/Documentos/GitHub/InterdisciplinarPUC/src/View/TelaProdutos/TelaDeManutenção.java</file>
-            <file>file:/C:/Users/guuil/OneDrive/Documentos/GitHub/InterdisciplinarPUC/src/View/LoginCadastro/TelaDeLogin.java</file>
+            <file>file:/C:/Codes/InterdisciplinarPUC/src/View/ListaFuncionarios/TelaListaFuncionario.java</file>
+            <file>file:/C:/Codes/InterdisciplinarPUC/src/Controller/ProdutoController.java</file>
+            <file>file:/C:/Codes/InterdisciplinarPUC/src/Model/Funcionario.java</file>
+            <file>file:/C:/Codes/InterdisciplinarPUC/src/Persistencia/FuncionarioDAO.java</file>
+            <file>file:/C:/Codes/InterdisciplinarPUC/src/Persistencia/ProdutoDAO.java</file>
+            <file>file:/C:/Codes/InterdisciplinarPUC/src/Controller/QRCodeReaderController.java</file>
+            <file>file:/C:/Codes/InterdisciplinarPUC/src/Controller/FuncionarioController.java</file>
+            <file>file:/C:/Codes/InterdisciplinarPUC/src/View/TelaDeCompra.java</file>
         </group>
     </open-files>
 </project-private>
