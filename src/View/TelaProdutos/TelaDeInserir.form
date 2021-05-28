@@ -98,10 +98,10 @@
                                           <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtDescrição" pref="250" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtValor" min="-2" pref="250" max="-2" attributes="0"/>
+                                          <Component id="txtDescrição" min="-2" pref="250" max="-2" attributes="0"/>
                                           <Component id="txtCodBarras" alignment="0" min="-2" pref="248" max="-2" attributes="0"/>
-                                          <Component id="txtValor" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -228,16 +228,6 @@
                 <Property name="text" type="java.lang.String" value="Adicionar Produto"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="txtValor">
-              <Properties>
-                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-                  <Format subtype="0" type="0"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtValorKeyTyped"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JTextField" name="txtEstoque">
               <Events>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEstoqueKeyTyped"/>
@@ -250,6 +240,8 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Estoque"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtValor">
             </Component>
           </SubComponents>
         </Container>

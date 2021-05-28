@@ -295,7 +295,21 @@ public class TelaDeManutenção extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        TelaDeAlteração telaAlterar = new TelaDeAlteração();
+        int column = 0;
+        int row = tabelaProduto.getSelectedRow();
+
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Erro! Selecione um produto");
+            return;
+        }
+
+        String valueId = tabelaProduto.getModel().getValueAt(row, 0).toString();
+        String valueMarca = tabelaProduto.getModel().getValueAt(row, 1).toString();
+        String valueNome = tabelaProduto.getModel().getValueAt(row, 2).toString();
+        String valueValor = tabelaProduto.getModel().getValueAt(row, 3).toString();
+        String valueEstoque = tabelaProduto.getModel().getValueAt(row, 4).toString();
+
+        TelaDeAlteração telaAlterar = new TelaDeAlteração(valueId, valueMarca, valueNome, valueValor, valueEstoque);
         telaAlterar.setVisible(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
@@ -330,7 +344,7 @@ public class TelaDeManutenção extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverProdutoActionPerformed
 
     private void btnAtualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtualizarMouseClicked
-        preencherTabelas();
+        preencherTabela();
     }//GEN-LAST:event_btnAtualizarMouseClicked
 
     /**

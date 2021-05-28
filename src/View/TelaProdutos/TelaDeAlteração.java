@@ -5,6 +5,8 @@
  */
 package View.TelaProdutos;
 
+import Controller.ProdutoController;
+import Controller.TratamentoRetorno;
 import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.JFormattedTextField;
@@ -20,10 +22,19 @@ public class TelaDeAlteração extends javax.swing.JFrame {
     /**
      * Creates new form TelaDeAlteração
      */
-    public TelaDeAlteração() {
+    private ProdutoController controllerProduto;
+    
+    public TelaDeAlteração(String Id, String Marca, String Nome, String Valor, String Estoque) {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        controllerProduto = new ProdutoController();
+        
+        txtId.setText(Id);
+        txtMarca.setText(Marca);
+        txtDescrição.setText(Nome);
+        txtValor.setText(Valor);
+        txtEstoque.setText(Estoque);
     }
 
     /**
@@ -46,10 +57,10 @@ public class TelaDeAlteração extends javax.swing.JFrame {
         txtDescrição = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        txtValor = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtEstoque = new javax.swing.JTextField();
+        txtValor = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alterar Produto");
@@ -67,11 +78,6 @@ public class TelaDeAlteração extends javax.swing.JFrame {
         jLabel1.setText("ID");
 
         txtId.setEditable(false);
-        txtId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Marca");
@@ -89,13 +95,6 @@ public class TelaDeAlteração extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Valor");
 
-        txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtValorKeyTyped(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Alterar Produto");
@@ -108,6 +107,8 @@ public class TelaDeAlteração extends javax.swing.JFrame {
                 txtEstoqueKeyTyped(evt);
             }
         });
+
+        txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -135,8 +136,8 @@ public class TelaDeAlteração extends javax.swing.JFrame {
                             .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                             .addComponent(txtMarca, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                             .addComponent(txtDescrição, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                            .addComponent(txtValor)
-                            .addComponent(txtEstoque))
+                            .addComponent(txtEstoque)
+                            .addComponent(txtValor))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -209,19 +210,16 @@ public class TelaDeAlteração extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
-        txtId.setText("teste");
-    }//GEN-LAST:event_txtIdActionPerformed
-
-    private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
-        String caracteres="0987654321,.";// lista de caracters que devem ser aceitos
-        if(!caracteres.contains(evt.getKeyChar()+"")){
-            evt.consume();//aciona esse propriedade para eliminar a ação do evento
-        }
-    }//GEN-LAST:event_txtValorKeyTyped
-
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Produto Alterado com Sucesso");
+        TratamentoRetorno tratamento = controllerProduto.atualizarCadastro(txtId.getText(), txtMarca.getText(), txtDescrição.getText(), txtValor.getText(), txtEstoque.getText());
+        
+        if(tratamento.isSucesso()){
+            JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+        }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void txtEstoqueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstoqueKeyTyped

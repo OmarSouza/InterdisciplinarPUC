@@ -357,7 +357,10 @@ public class TelaDeCompra extends javax.swing.JFrame {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         
         if(x == 0){
-            JOptionPane.showMessageDialog(null, "Dinheiro");
+            JOptionPane.showMessageDialog(null, "Metodo Selecionado: Dinheiro");
+            String valor = JOptionPane.showInputDialog(null, "Por favor, digite o valor entregue pelo cliente: ", "Informe o valor", JOptionPane.INFORMATION_MESSAGE);
+            double valorDouble = Double.parseDouble(valor);
+            System.out.println(valor);
         }
         else if(x == 1){
             JOptionPane.showMessageDialog(null, "Cartão");

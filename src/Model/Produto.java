@@ -31,11 +31,12 @@ public class Produto {
     @Column
     private double preco;
 
-    public Produto(long codBarras, String marca, String nomeProduto, double preco) {
-        this.preco = preco;
+
+    public Produto(long codBarras, String marca, String nomeProduto, double preco, int estoque) {
         this.nomeProduto = nomeProduto;
         this.marca = marca;
         this.codBarras = codBarras;
+        this.preço = preco;
     }
     
     public Produto(long codBarras){
@@ -45,6 +46,8 @@ public class Produto {
     public Produto() {
         
     }
+    
+    
 
     public Produto(long codBarras, String nomeProduto, String marca, int estoque, double preco) {
         this.codBarras = codBarras;

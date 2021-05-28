@@ -6,6 +6,7 @@
 package View.ListaFuncionarios;
 
 import Controller.FuncionarioController;
+import Controller.TratamentoRetorno;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -16,11 +17,24 @@ import javax.swing.JTextField;
 public class TelaAlterarFuncionario extends javax.swing.JFrame {
 
     private FuncionarioController funcController;
-    public TelaAlterarFuncionario() {
+    public TelaAlterarFuncionario(String Id, String Usuario, String CPF, String Bairro, String Cargo, String Data, String Email, String Endereco, String Nome, String Numero, String Telefone) {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         funcController = new FuncionarioController();
+        
+        txtID.setText(Id);
+        txtUser.setText(Usuario);
+        txtCPF.setText(CPF);
+        txtBairro.setText(Bairro);
+        txtCargo.setText(Cargo);
+        txtDataNascimento.setText(Data);
+        txtEmail.setText(Email);
+        txtEndereço.setText(Endereco);
+        txtName.setText(Nome);
+        txtNumeroCasa.setText(Numero);
+        txtTelefone.setText(Telefone);
+        
     }
 
     
@@ -304,19 +318,15 @@ public class TelaAlterarFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        TelaListaFuncionario telaLista = new TelaListaFuncionario();
+        TratamentoRetorno tratamento = funcController.atualizarCadastro(txtID.getText(),txtDataNascimento.getText(), txtCargo.getText(), txtEmail.getText(), txtEndereço.getText(), txtTelefone.getText(), txtUser.getText(), txtPassword.getText(), txtName.getText(), txtCPF.getText(), txtNumeroCasa.getText(), txtBairro.getText());
         
-        int column = 0;
-        int row = telaLista.getTabela().getSelectedRow();
-        
-        if(row < 0){
-            JOptionPane.showMessageDialog(null, "Cadastro não selecionado.");
-            return;
+        if(tratamento.isSucesso()){
+            JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+            this.dispose();
         }
-        
-        String value = telaLista.getTabela().getModel().getValueAt(row, column).toString();
-        
-        //Continuar o Metodo de Busca
+        else{
+            JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+        }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void txtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCancelarActionPerformed

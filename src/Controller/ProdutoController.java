@@ -16,9 +16,8 @@ import javax.swing.table.DefaultTableModel;
  * @author omars
  */
 public class ProdutoController {
-
-    public TratamentoRetorno verificarProduto(String codBarras, String nome, String marca, String valor, String estoque) {
-        if (codBarras == null || codBarras.isEmpty()) {
+    public TratamentoRetorno verificarProduto(String codBarras, String marca, String nome, String valor, String estoque){
+        if(codBarras == null || codBarras.isEmpty()){
             TratamentoRetorno tratamento = new TratamentoRetorno(false, "Codigo de Barras não preenchido.");
             return tratamento;
         }
@@ -66,8 +65,8 @@ public class ProdutoController {
         } catch (Exception e) {
             return new TratamentoRetorno(false, "Estoque não preenchido com valor numerico.");
         }
-
-        Produto produto = new Produto(codBarrasLong, nome, marca, estoqueInt, valorDouble);
+        
+        Produto produto = new Produto(codBarrasLong, marca, nome, valorDouble, estoqueInt);
         int resultado = produto.insert();
 
         if (resultado <= 0) {
@@ -101,6 +100,68 @@ public class ProdutoController {
         TratamentoRetorno tratamento = new TratamentoRetorno(true, "Deletado com Sucesso");
         return tratamento;
     }
+    
+    public TratamentoRetorno atualizarCadastro(String codBarras, String marca, String nome, String valor, String estoque){
+        if(codBarras == null || codBarras.isEmpty()){
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Codigo de Barras não preenchido.");
+            return tratamento;
+        }
+        
+        if(nome == null || nome.isEmpty()){
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Nome não preenchido.");
+            return tratamento;
+        }
+        
+        if(marca == null || marca.isEmpty()){
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Marca não preenchido.");
+            return tratamento;
+        }
+        
+        if(valor == null || valor.isEmpty()){
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Valor não preenchido.");
+            return tratamento;
+        }
+        
+        if(estoque == null || estoque.isEmpty()){
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Estoque não preenchido.");
+            return tratamento;
+        }
+        
+        long codBarrasLong;
+        
+        try {
+            codBarrasLong = Long.parseLong(codBarras);
+        } catch (Exception e) {
+            return new TratamentoRetorno(false, "Codigo de Barras não preenchido com valor numerico.");
+        }
+        
+        double valorDouble;
+        
+        try {
+            valorDouble = Double.parseDouble(valor);
+        } catch (Exception e) {
+            return new TratamentoRetorno(false, "Valor não preenchido com valor numerico.");
+        }
+        
+        int estoqueInt;
+        
+        try {
+            estoqueInt = Integer.parseInt(estoque);
+        } catch (Exception e) {
+            return new TratamentoRetorno(false, "Estoque não preenchido com valor numerico.");
+        }
+        
+        Produto produto = new Produto(codBarrasLong, marca, nome, valorDouble, estoqueInt);
+        int resultado = produto.update();
+        
+        if(resultado <= 0){
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Alteração Não Realizada!");
+            return tratamento;
+        }
+        
+        TratamentoRetorno tratamento = new TratamentoRetorno(false, "Alteração Realizada!");
+        return tratamento;
+    }
 
     public TratamentoRetorno verificarCodBarras(long codBarras) throws Exception {
         Produto prod = new Produto(codBarras);
@@ -114,5 +175,4 @@ public class ProdutoController {
         TratamentoRetorno tratamento = new TratamentoRetorno(true, "Logado com sucesso.");
         return tratamento;
     }
-
 }

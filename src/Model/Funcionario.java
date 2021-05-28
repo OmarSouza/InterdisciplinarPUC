@@ -42,11 +42,11 @@ public class Funcionario {
     @Column
     private String senha;
     @Column
-    private Integer numero;
+    private String numero;
     @Column
     private String bairro;
 
-    public Funcionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf, Integer numero, String bairro) {
+    public Funcionario(String dataNasc, String cargo, String email, String endereco, String telefone, String login, String senha, String nome, String cpf, String numero, String bairro) {
         this.nome = nome;
         this.CPF = cpf;
         this.dataNasc = dataNasc;
@@ -64,6 +64,23 @@ public class Funcionario {
         this.login = login;
         this.senha = senha;
     }
+
+    public Funcionario(Integer ID, String login, String senha, String CPF, String nome, String cargo, String dataNasc, String endereco, String numero, String bairro, String telefone, String email) {
+        this.ID = ID;
+        this.nome = nome;
+        this.CPF = CPF;
+        this.dataNasc = dataNasc;
+        this.cargo = cargo;
+        this.email = email;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.login = login;
+        this.senha = senha;
+        this.numero = numero;
+        this.bairro = bairro;
+    }
+    
+    
     
     public Funcionario(){
         
@@ -133,12 +150,11 @@ public class Funcionario {
         this.senha = senha;
     }
 
-
-    public Integer getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -185,4 +201,6 @@ public class Funcionario {
     public boolean validarLogin() throws Exception{
         return FuncionarioDAO.getInstance().validarUsuario(this);
     }
+    
+    
 }

@@ -55,6 +55,7 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
         btnOpções = new javax.swing.JMenu();
         btnAlterarFuncionario = new javax.swing.JMenuItem();
         btnRemoverFuncionario = new javax.swing.JMenuItem();
+        btnAtualizar = new javax.swing.JMenu();
         btnVoltar = new javax.swing.JMenu();
 
         jMenu1.setText("File");
@@ -139,6 +140,11 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabelaFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaFuncionarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaFuncionario);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -180,6 +186,14 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
 
         jMenuBar2.add(btnOpções);
 
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAtualizarMouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(btnAtualizar);
+
         btnVoltar.setText("Voltar");
         btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -205,7 +219,29 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncionarioActionPerformed
-        
+        int column = 0;
+        int row = tabelaFuncionario.getSelectedRow();
+
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Erro! Selecione uma pessoa");
+            return;
+        }
+
+        String valueId = tabelaFuncionario.getModel().getValueAt(row, 0).toString();
+        String valueUsuario = tabelaFuncionario.getModel().getValueAt(row, 1).toString();
+        String valueCPF = tabelaFuncionario.getModel().getValueAt(row, 2).toString();
+        String valueNome = tabelaFuncionario.getModel().getValueAt(row, 3).toString();
+        String valueCargo = tabelaFuncionario.getModel().getValueAt(row, 4).toString();
+        String valueData = tabelaFuncionario.getModel().getValueAt(row, 5).toString();
+        String valueEndereco = tabelaFuncionario.getModel().getValueAt(row, 6).toString();
+        String valueNumero = tabelaFuncionario.getModel().getValueAt(row, 7).toString();
+        String valueBairro = tabelaFuncionario.getModel().getValueAt(row, 8).toString();
+        String valueTelefone = tabelaFuncionario.getModel().getValueAt(row, 9).toString();
+        String valueEmail = tabelaFuncionario.getModel().getValueAt(row, 10).toString();
+
+        TelaAlterarFuncionario telaAtualizar = new TelaAlterarFuncionario(valueId, valueUsuario, valueCPF, valueBairro, valueCargo, valueData, valueEmail, valueEndereco, valueNome, valueNumero, valueTelefone);
+        telaAtualizar.setVisible(true);
+
     }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
     private void btnRemoverFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverFuncionarioActionPerformed
@@ -238,6 +274,14 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
         telaCompra.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVoltarMouseClicked
+
+    private void tabelaFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaFuncionarioMouseClicked
+        
+    }//GEN-LAST:event_tabelaFuncionarioMouseClicked
+
+    private void btnAtualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtualizarMouseClicked
+        preencherTabela();
+    }//GEN-LAST:event_btnAtualizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -276,6 +320,7 @@ public class TelaListaFuncionario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnAlterarFuncionario;
+    private javax.swing.JMenu btnAtualizar;
     private javax.swing.JMenu btnOpções;
     private javax.swing.JMenuItem btnRemoverFuncionario;
     private javax.swing.JMenu btnVoltar;
