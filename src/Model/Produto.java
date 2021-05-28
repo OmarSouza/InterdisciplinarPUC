@@ -29,14 +29,18 @@ public class Produto {
     @Column
     private int estoque;
     @Column
-    private double preço;
+    private double preco;
+
 
     public Produto(long codBarras, String marca, String nomeProduto, double preco, int estoque) {
         this.nomeProduto = nomeProduto;
         this.marca = marca;
-        this.estoque = estoque;
         this.codBarras = codBarras;
         this.preço = preco;
+    }
+    
+    public Produto(long codBarras){
+        this.codBarras = codBarras;
     }
 
     public Produto() {
@@ -44,6 +48,14 @@ public class Produto {
     }
     
     
+
+    public Produto(long codBarras, String nomeProduto, String marca, int estoque, double preco) {
+        this.codBarras = codBarras;
+        this.nomeProduto = nomeProduto;
+        this.marca = marca;
+        this.estoque = estoque;
+        this.preco = preco;
+    }
 
     public String getNomeProduto() {
         return nomeProduto;
@@ -77,12 +89,12 @@ public class Produto {
         this.codBarras = codBarras;
     }
 
-    public double getPreço() {
-        return preço;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setPreço(double preço) {
-        this.preço = preço;
+    public void setPreco(double preço) {
+        this.preco = preço;
     }
     
     public int insert(){
@@ -99,5 +111,9 @@ public class Produto {
     
     public static ArrayList<Produto> findAll(){
         return ProdutoDAO.getInstance().findAll();
+    }
+    
+        public boolean validarProduto() throws Exception{
+        return ProdutoDAO.getInstance().procurarProduto(this);
     }
 }

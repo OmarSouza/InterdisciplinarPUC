@@ -5,10 +5,14 @@
  */
 package Controller;
 
+import Model.Produto;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author omars
  */
 public class ItemController {
+    
     
 }

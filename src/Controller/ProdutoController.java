@@ -6,6 +6,9 @@
 package Controller;
 
 import Model.Produto;
+import static Model.Produto.findAll;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,45 +21,45 @@ public class ProdutoController {
             TratamentoRetorno tratamento = new TratamentoRetorno(false, "Codigo de Barras não preenchido.");
             return tratamento;
         }
-        
-        if(nome == null || nome.isEmpty()){
+
+        if (nome == null || nome.isEmpty()) {
             TratamentoRetorno tratamento = new TratamentoRetorno(false, "Nome não preenchido.");
             return tratamento;
         }
-        
-        if(marca == null || marca.isEmpty()){
+
+        if (marca == null || marca.isEmpty()) {
             TratamentoRetorno tratamento = new TratamentoRetorno(false, "Marca não preenchido.");
             return tratamento;
         }
-        
-        if(valor == null || valor.isEmpty()){
+
+        if (valor == null || valor.isEmpty()) {
             TratamentoRetorno tratamento = new TratamentoRetorno(false, "Valor não preenchido.");
             return tratamento;
         }
-        
-        if(estoque == null || estoque.isEmpty()){
+
+        if (estoque == null || estoque.isEmpty()) {
             TratamentoRetorno tratamento = new TratamentoRetorno(false, "Estoque não preenchido.");
             return tratamento;
         }
-        
+
         long codBarrasLong;
-        
+
         try {
             codBarrasLong = Long.parseLong(codBarras);
         } catch (Exception e) {
             return new TratamentoRetorno(false, "Codigo de Barras não preenchido com valor numerico.");
         }
-        
+
         double valorDouble;
-        
+
         try {
             valorDouble = Double.parseDouble(valor);
         } catch (Exception e) {
             return new TratamentoRetorno(false, "Valor não preenchido com valor numerico.");
         }
-        
+
         int estoqueInt;
-        
+
         try {
             estoqueInt = Integer.parseInt(estoque);
         } catch (Exception e) {
@@ -65,35 +68,35 @@ public class ProdutoController {
         
         Produto produto = new Produto(codBarrasLong, marca, nome, valorDouble, estoqueInt);
         int resultado = produto.insert();
-        
-        if(resultado <= 0){
+
+        if (resultado <= 0) {
             TratamentoRetorno tratamento = new TratamentoRetorno(false, "Cadastro Não Realizado!");
             return tratamento;
         }
-        
+
         TratamentoRetorno tratamento = new TratamentoRetorno(false, "Cadastro Realizado!");
         return tratamento;
     }
-    
-    public void preencherTabelas(DefaultTableModel modelo){
+
+    public void preencherTabelas(DefaultTableModel modelo) {
         modelo.setNumRows(0);
-        
-        for(Produto produto : Produto.findAll()){
-            modelo.addRow(new Object[]{produto.getCodBarras(), produto.getMarca(), produto.getNomeProduto(), produto.getPreço(), produto.getEstoque()});
+
+        for (Produto produto : Produto.findAll()) {
+            modelo.addRow(new Object[]{produto.getCodBarras(), produto.getMarca(), produto.getNomeProduto(), produto.getPreco(), produto.getEstoque()});
         }
     }
-    
-    public TratamentoRetorno deletarCadastro(String codBarras){
+
+    public TratamentoRetorno deletarCadastro(String codBarras) {
         Produto produto = new Produto();
         produto.setCodBarras(Long.parseLong(codBarras));
-        
+
         int resultado = produto.delete();
-        
-        if(resultado < 0){
+
+        if (resultado < 0) {
             TratamentoRetorno tratamento = new TratamentoRetorno(false, "Não foi possivel deletar produto.");
             return tratamento;
         }
-        
+
         TratamentoRetorno tratamento = new TratamentoRetorno(true, "Deletado com Sucesso");
         return tratamento;
     }
@@ -157,6 +160,19 @@ public class ProdutoController {
         }
         
         TratamentoRetorno tratamento = new TratamentoRetorno(false, "Alteração Realizada!");
+        return tratamento;
+    }
+
+    public TratamentoRetorno verificarCodBarras(long codBarras) throws Exception {
+        Produto prod = new Produto(codBarras);
+        boolean resultado = prod.validarProduto();
+
+        if (resultado == false) {
+            TratamentoRetorno tratamento = new TratamentoRetorno(false, "Login incorreto.");
+            return tratamento;
+        }
+
+        TratamentoRetorno tratamento = new TratamentoRetorno(true, "Logado com sucesso.");
         return tratamento;
     }
 }

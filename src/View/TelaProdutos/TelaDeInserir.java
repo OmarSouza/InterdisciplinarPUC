@@ -24,6 +24,8 @@ public class TelaDeInserir extends javax.swing.JFrame {
         controllerProduto = new ProdutoController();
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -220,6 +222,8 @@ public class TelaDeInserir extends javax.swing.JFrame {
         
         if(tratamento.isSucesso()){
             JOptionPane.showMessageDialog(null, tratamento.getMensagem());
+            TelaDeManutenção telaManutencao = new TelaDeManutenção();
+            telaManutencao.repaint();
         }
         else{
             JOptionPane.showMessageDialog(null, tratamento.getMensagem());

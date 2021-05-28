@@ -8,6 +8,7 @@ package View.ListaFuncionarios;
 import Controller.FuncionarioController;
 import Controller.TratamentoRetorno;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -36,6 +37,10 @@ public class TelaAlterarFuncionario extends javax.swing.JFrame {
         
     }
 
+    
+    public void setId(JTextField ID){
+        this.txtID = ID;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

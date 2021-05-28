@@ -27,14 +27,14 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         controllerProduto = new ProdutoController();
-        preencherTabela();
+        preencherTabelas();
     }
 
-    public void preencherTabela(){
+    public void preencherTabelas(){
         controllerProduto.preencherTabelas((DefaultTableModel) tabelaProduto.getModel());
     }
     
-    public JTable getTabela(){
+    public JTable getTabelas(){
         return tabelaProduto;
     }
     @SuppressWarnings("unchecked")
@@ -336,7 +336,6 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         
             if(tratamento.isSucesso()){
                 JOptionPane.showMessageDialog(null, tratamento.getMensagem());
-                preencherTabela();
             }
             else{
                 JOptionPane.showMessageDialog(null, tratamento.getMensagem());
