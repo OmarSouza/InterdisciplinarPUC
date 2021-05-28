@@ -31,17 +31,19 @@ public class Produto {
     @Column
     private double preço;
 
-    public Produto(String nomeProduto, String marca, int estoque, long codBarras, double preço) {
+    public Produto(long codBarras, String marca, String nomeProduto, double preco, int estoque) {
         this.nomeProduto = nomeProduto;
         this.marca = marca;
         this.estoque = estoque;
         this.codBarras = codBarras;
-        this.preço = preço;
+        this.preço = preco;
     }
 
     public Produto() {
         
     }
+    
+    
 
     public String getNomeProduto() {
         return nomeProduto;

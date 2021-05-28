@@ -46,9 +46,9 @@ public class TelaDeInserir extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtValor = new javax.swing.JFormattedTextField();
         txtEstoque = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        txtValor = new javax.swing.JTextField();
 
         jLabel2.setText("jLabel2");
 
@@ -99,13 +99,6 @@ public class TelaDeInserir extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Adicionar Produto");
 
-        txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtValorKeyTyped(evt);
-            }
-        });
-
         txtEstoque.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtEstoqueKeyTyped(evt);
@@ -140,10 +133,10 @@ public class TelaDeInserir extends javax.swing.JFrame {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDescrição, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                    .addComponent(txtCodBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtValor))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDescrição, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCodBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(433, 433, 433))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -233,13 +226,6 @@ public class TelaDeInserir extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
-        String caracteres="0987654321,.";// lista de caracters que devem ser aceitos
-        if(!caracteres.contains(evt.getKeyChar()+"")){
-            evt.consume();//aciona esse propriedade para eliminar a ação do evento
-        }
-    }//GEN-LAST:event_txtValorKeyTyped
-
     private void txtEstoqueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstoqueKeyTyped
         String caracteres="0987654321";// lista de caracters que devem ser aceitos
         if(!caracteres.contains(evt.getKeyChar()+"")){
@@ -309,6 +295,6 @@ public class TelaDeInserir extends javax.swing.JFrame {
     private javax.swing.JTextField txtDescrição;
     private javax.swing.JTextField txtEstoque;
     private javax.swing.JTextField txtMarca;
-    private javax.swing.JFormattedTextField txtValor;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }
