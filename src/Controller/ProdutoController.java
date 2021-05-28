@@ -8,6 +8,7 @@ package Controller;
 import Model.Produto;
 import static Model.Produto.findAll;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -163,15 +164,22 @@ public class ProdutoController {
         return tratamento;
     }
 
-    public TratamentoRetorno verificarCodBarras(long codBarras) throws Exception {
+    public TratamentoRetorno verificarCodBarras(long codBarras, DefaultTableModel modelo) throws Exception {
         Produto prod = new Produto(codBarras);
         boolean resultado = prod.validarProduto();
+        
+        modelo.setNumRows(0);
 
         if (resultado == false) {
             TratamentoRetorno tratamento = new TratamentoRetorno(false, "Login incorreto.");
             return tratamento;
         }
 
+        
+        for (Produto produto : Produto.findAll()) {
+                modelo.addRow(new Object[]{prod.getCodBarras(), prod.getMarca(), prod.getNomeProduto(), prod.getPreco()});
+        }
+        
         TratamentoRetorno tratamento = new TratamentoRetorno(true, "Logado com sucesso.");
         return tratamento;
     }
