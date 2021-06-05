@@ -37,8 +37,10 @@ public class VendaDAO extends AbstractVendaDAO {
 		return 0;
 	}
 
-	@Override
-	public ArrayList<Venda> findAll(){
-		
-	}
+    @Override
+    public ArrayList<Venda> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+	
 }

@@ -195,7 +195,6 @@ public class TelaDeLogin extends javax.swing.JFrame {
             TratamentoRetorno tratamento = controller.verificarLogin(txtUsuario.getText(), senha);
             
             if(tratamento.isSucesso()){
-                JOptionPane.showMessageDialog(null, tratamento.getMensagem());
                 TelaDeCompra telaCompra = new TelaDeCompra();
                 telaCompra.setVisible(true);
                 this.setVisible(false);

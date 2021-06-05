@@ -228,6 +228,9 @@ public class TelaDeInserir extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, tratamento.getMensagem());
         }
+       
+        this.setVisible(false);
+        
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void txtEstoqueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstoqueKeyTyped

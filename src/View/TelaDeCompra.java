@@ -16,13 +16,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author omars
  */
 public class TelaDeCompra extends javax.swing.JFrame {
-    
+
     QRCodeReaderController qrCode = new QRCodeReaderController();
     private ProdutoController prodController;
 
@@ -96,15 +95,18 @@ public class TelaDeCompra extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(23, 92, 183));
 
         txtPrecoTotal.setEditable(false);
+        txtPrecoTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jScrollPane6.setViewportView(txtPrecoTotal);
 
         txtPrecoProduto.setEditable(false);
+        txtPrecoProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jScrollPane8.setViewportView(txtPrecoProduto);
 
         textCodigoDeBarras.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jScrollPane9.setViewportView(textCodigoDeBarras);
 
         txtDescricaoProduto.setEditable(false);
+        txtDescricaoProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jScrollPane10.setViewportView(txtDescricaoProduto);
 
         btnFinalizar.setText("Finalizar");
@@ -136,6 +138,7 @@ public class TelaDeCompra extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/logo compra.png"))); // NOI18N
 
+        tabelaCompra.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tabelaCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -283,7 +286,7 @@ public class TelaDeCompra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        
+
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
@@ -313,9 +316,8 @@ public class TelaDeCompra extends javax.swing.JFrame {
                 String fileSelected = qrCode.readQRCode(file.getPath());
                 textCodigoDeBarras.setText(fileSelected);
                 long fileSelectedLong = Long.parseLong(fileSelected);
-                
-                TratamentoRetorno retorno = prodController.verificarCodBarras(fileSelectedLong,(DefaultTableModel) tabelaCompra.getModel());
-                
+
+                TratamentoRetorno retorno = prodController.verificarCodBarras(fileSelectedLong, (DefaultTableModel) tabelaCompra.getModel());
 
                 prodController.setPrecoTotal(prodController.getProdutoAdd().getPreco() + prodController.getPrecoTotal());
                 String preencherCampos = Double.toString(prodController.getProdutoAdd().getPreco());
@@ -323,39 +325,79 @@ public class TelaDeCompra extends javax.swing.JFrame {
                 preencherCampos = prodController.getProdutoAdd().getMarca() + " " + prodController.getProdutoAdd().getNomeProduto();
                 txtDescricaoProduto.setText(preencherCampos);
                 txtPrecoTotal.setText(Double.toString(prodController.getPrecoTotal()));
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {    
+        } else {
             System.out.println("Arquivo cancelado pelo usuário.");
         }
-        
-        
+
+
     }//GEN-LAST:event_btnAdicionarProdutoMouseClicked
 
     private void btnCancelarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarProdutoMouseClicked
-        JOptionPane.showMessageDialog(rootPane, "Ultimo Produto da Lista de Compra Removido com Sucesso");
+        DefaultTableModel dtm = (DefaultTableModel) tabelaCompra.getModel();
+        if (tabelaCompra.getSelectedRow() >= 0) {
+            prodController.setPrecoTotal(prodController.getPrecoTotal() - (Double) tabelaCompra.getValueAt(tabelaCompra.getSelectedRow(), 3));
+            txtPrecoTotal.setText(Double.toString(prodController.getPrecoTotal()));
+            dtm.removeRow(tabelaCompra.getSelectedRow());
+            tabelaCompra.setModel(dtm);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+        }
+
+
+        /*
+        if (tabelaCompra.getSelectedRow() >= 0) {
+            double linha = tabelaCompra.getSelectedRow();
+            String selec = ((String) tabelaCompra.getValueAt((int) linha, 3));
+            double resul = Float.parseFloat(selec);
+            String subst = txtPrecoTotal.getText();
+            double tirar = Float.parseFloat(subst.replace(",", "."));
+            linha = (tirar - resul);
+            String troca3 = String.valueOf(linha);
+            txtPrecoTotal.setText(troca3);
+        } else {
+        }
+        if (tabelaCompra.getSelectedRow() >= 0) {
+            ((DefaultTableModel) tabelaCompra.getModel()).removeRow(tabelaCompra.getSelectedRow());
+        } else {
+        }
+         */
     }//GEN-LAST:event_btnCancelarProdutoMouseClicked
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         String[] options = {"Dinheiro", "Cartão", "Cancelar"};
-        
+
         int x = JOptionPane.showOptionDialog(null, "Selecione o método de pagamento: ",
                 "Pagamento",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-        
-        if(x == 0){
-            JOptionPane.showMessageDialog(null, "Metodo Selecionado: Dinheiro");
+
+        if (x == 0) {
             String valor = JOptionPane.showInputDialog(null, "Por favor, digite o valor entregue pelo cliente: ", "Informe o valor", JOptionPane.INFORMATION_MESSAGE);
             double valorDouble = Double.parseDouble(valor);
             System.out.println(valor);
-            
-            
+            double troco = valorDouble - prodController.getPrecoTotal();
+            JOptionPane.showMessageDialog(null, "Troco: " + troco);
+
+        } else if (x == 1) {
+            String valor;
+
+            do {
+                valor = JOptionPane.showInputDialog(null, "Por favor, digite o senha do cartão: ", "Informe a senha: ", JOptionPane.INFORMATION_MESSAGE);
+                if (valor.length() >= 4) {
+                    JOptionPane.showMessageDialog(null, "Compra finalizada com sucesso!");
+
+                }
+            } while (valor.length() < 4);
+
         }
-        else if(x == 1){
-            JOptionPane.showMessageDialog(null, "Cartão");
-        }
+
+        TelaDeCompra telaCompra = new TelaDeCompra();
+        this.dispose();
+        telaCompra.setVisible(true);
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     /**

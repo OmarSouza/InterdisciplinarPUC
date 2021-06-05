@@ -176,7 +176,8 @@ public class ProdutoController {
             return tratamento;
         }
 
-        for (Produto produto : Produto.findAll()) {
+        // gambiarra
+        for (int i = 0; i < 1;i++) {
             modelo.addRow(new Object[]{prod.getCodBarras(), prod.getMarca(), prod.getNomeProduto(), prod.getPreco(), prod.getEstoque()});
             setProdutoAdd(prod);
         }

@@ -8,9 +8,7 @@ package View.TelaProdutos;
 import Controller.ProdutoController;
 import Controller.TratamentoRetorno;
 import View.TelaDeCompra;
-import View.TelaProdutos.TelaDeAlteração;
 import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -50,7 +48,6 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         btnAlterarProduto = new javax.swing.JMenu();
         btnInserir = new javax.swing.JMenuItem();
-        btnCodBarras = new javax.swing.JMenuItem();
         btnAlterar = new javax.swing.JMenuItem();
         btnRemoverProduto = new javax.swing.JMenuItem();
         btnAtualizar = new javax.swing.JMenu();
@@ -219,7 +216,7 @@ public class TelaDeManutenção extends javax.swing.JFrame {
 
         btnAlterarProduto.setText("Opções");
 
-        btnInserir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        btnInserir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         btnInserir.setText("Inserir Produto");
         btnInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,16 +225,7 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         });
         btnAlterarProduto.add(btnInserir);
 
-        btnCodBarras.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        btnCodBarras.setText("Criar Cód. de Barras Produto");
-        btnCodBarras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCodBarrasActionPerformed(evt);
-            }
-        });
-        btnAlterarProduto.add(btnCodBarras);
-
-        btnAlterar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        btnAlterar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         btnAlterar.setText("Alterar Produto");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,7 +234,7 @@ public class TelaDeManutenção extends javax.swing.JFrame {
         });
         btnAlterarProduto.add(btnAlterar);
 
-        btnRemoverProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        btnRemoverProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         btnRemoverProduto.setText("Remover Produto");
         btnRemoverProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,7 +332,7 @@ public class TelaDeManutenção extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverProdutoActionPerformed
 
     private void btnAtualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtualizarMouseClicked
-        preencherTabela();
+        preencherTabelas();
     }//GEN-LAST:event_btnAtualizarMouseClicked
 
     /**
@@ -386,7 +374,6 @@ public class TelaDeManutenção extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnAlterar;
     private javax.swing.JMenu btnAlterarProduto;
     private javax.swing.JMenu btnAtualizar;
-    private javax.swing.JMenuItem btnCodBarras;
     private javax.swing.JMenuItem btnInserir;
     private javax.swing.JMenuItem btnRemoverProduto;
     private javax.swing.JMenu btnVoltar;

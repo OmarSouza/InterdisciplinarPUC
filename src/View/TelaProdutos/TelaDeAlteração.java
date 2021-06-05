@@ -37,6 +37,10 @@ public class TelaDeAlteração extends javax.swing.JFrame {
         txtEstoque.setText(Estoque);
     }
 
+    private TelaDeAlteração() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,7 +112,12 @@ public class TelaDeAlteração extends javax.swing.JFrame {
             }
         });
 
-        txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtValor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -228,6 +237,10 @@ public class TelaDeAlteração extends javax.swing.JFrame {
             evt.consume();//aciona esse propriedade para eliminar a ação do evento
         }
     }//GEN-LAST:event_txtEstoqueKeyTyped
+
+    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorActionPerformed
 
     /**
      * @param args the command line arguments

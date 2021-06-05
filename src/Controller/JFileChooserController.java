@@ -16,12 +16,13 @@ import java.io.File;
 public class JFileChooserController {
 
     public File openFile() {
-        JFileChooser fileChooser = new JFileChooser();
+        String defaultPath = "C:\\Users\\guuil\\OneDrive\\Documentos\\GitHub\\InterdisciplinarPUC\\qrcodes";
+        JFileChooser fileChooser = new JFileChooser(defaultPath);
         File selectedFile = null;
         
         try {
             fileChooser.setCurrentDirectory(
-                    new File(System.getProperty("user.home")));
+                    new File(System.getProperty("C:\\Users\\guuil\\OneDrive\\Documentos\\GitHub\\InterdisciplinarPUC\\qrcodes")));
 
             int resultFile = fileChooser.showOpenDialog(null);
             if (resultFile == javax.swing.JFileChooser.APPROVE_OPTION) {
